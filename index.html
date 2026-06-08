@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbiMed - Saúde Preditiva Orbital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Space Particles and Gradients -->
+    <div class="space-bg">
+        <div class="glow-orb glow-1"></div>
+        <div class="glow-orb glow-2"></div>
+        <div class="constellation-grid"></div>
+    </div>
+
+    <!-- Main Container representing an iPhone 15 Pro -->
+    <div class="iphone-container">
+        <!-- Physical iPhone Elements -->
+        <div class="iphone-button volume-up"></div>
+        <div class="iphone-button volume-down"></div>
+        <div class="iphone-button action-btn"></div>
+        <div class="iphone-button power"></div>
+
+        <div class="iphone-case">
+            <div class="iphone-screen">
+
+                <!-- Status Bar with time, wifi, battery, dynamic island -->
+                <div class="iphone-header">
+                    <span class="status-time" id="currentTime">19:40</span>
+                    <div class="dynamic-island-container">
+                        <div class="dynamic-island" id="dynamicIsland">
+                            <div class="island-camera"></div>
+                            <div class="island-content">
+                                <span class="island-text">OrbiMed Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-icons">
+                        <svg class="status-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.17 19.64 10.53 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" />
+                        </svg>
+                        <svg class="status-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 12v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H9v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                        </svg>
+                        <div class="battery-icon">
+                            <span class="battery-level"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Indicator Top (LEO Connection) -->
+                <div class="orbital-connection-bar" id="orbitalBar">
+                    <div class="satellite-ping">
+                        <div class="ping-ring"></div>
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 10a8 8 0 0 1 16 0M12 14v6M12 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>
+                    </div>
+                    <span id="connectionText">Conexão Orbital: Ativa (Satélite LEO)</span>
+                </div>
+
+                <!-- Screen Contents Container -->
+                <div class="screen-flow">
+
+                    <!-- SCREEN 1: Dashboard Principal (Home) -->
+                    <section class="app-screen active" id="screen-1">
+                        <div class="welcome-section">
+                            <p class="subtitle">SISTEMA ATIVO</p>
+                            <h2 class="title-primary">Olá, Agente de Saúde</h2>
+                        </div>
+
+                        <!-- Hardware status card -->
+                        <div class="glass-card hardware-card">
+                            <div class="card-header">
+                                <div class="badge-active">
+                                    <span class="pulse-dot"></span>
+                                    <span>CONECTADO</span>
+                                </div>
+                                <span class="device-name">OrbiPen v2.1</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-desc">Hardware de coleta biométrica detectado via Bluetooth Low Energy.
+                                </p>
+                                <div class="stats-row">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Bateria</span>
+                                        <span class="stat-value text-highlight">92%</span>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Firmware</span>
+                                        <span class="stat-value">v2.1</span>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Sinal</span>
+                                        <span class="stat-value text-highlight">-45 dBm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info details / features list -->
+                        <div class="info-list">
+                            <div class="info-item">
+                                <div class="info-icon">🧬</div>
+                                <div class="info-text">
+                                    <h4>Análise Oncológica</h4>
+                                    <p>IA OrbiBrain treinada para predizer marcadores moleculares precoces.</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">📡</div>
+                                <div class="info-text">
+                                    <h4>Failover Orbital LEO</h4>
+                                    <p>Transmissão automática via satélite em áreas remotas e sem sinal.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="screen-footer">
+                            <button class="btn btn-primary" id="goto-screen-2">
+                                <span class="plus-icon">+</span> Nova Triagem de Paciente
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- SCREEN 2: Cadastro Rápido do Paciente -->
+                    <section class="app-screen" id="screen-2">
+                        <div class="screen-header-inner">
+                            <button class="btn-back" data-target="1">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
+                            </button>
+                            <h3>Triagem</h3>
+                            <div style="width:24px"></div>
+                        </div>
+
+                        <div class="screen-intro">
+                            <h2 class="title-primary">Novo Paciente</h2>
+                            <p class="subtitle-desc">Preencha os dados básicos para iniciar a coleta de biomarcadores
+                                locais.</p>
+                        </div>
+
+                        <form class="patient-form" id="patientForm" onsubmit="event.preventDefault();">
+                            <div class="form-group">
+                                <label for="patientName">Nome Completo</label>
+                                <input type="text" id="patientName" placeholder="Ex: Maria da Silva" required
+                                    autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="patientAge">Idade (Anos)</label>
+                                <input type="number" id="patientAge" placeholder="Ex: 42" min="0" max="120" required
+                                    autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="patientRegion">Região / Comunidade</label>
+                                <input type="text" id="patientRegion" placeholder="Ex: Vila do Xingu, AM" required
+                                    autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="patientSymptoms">Sintomas Principais</label>
+                                <textarea id="patientSymptoms"
+                                    placeholder="Ex: Fadiga extrema, nódulo linfático inflamado..." rows="3" required
+                                    autocomplete="off"></textarea>
+                            </div>
+                        </form>
+
+                        <div class="screen-footer">
+                            <button class="btn btn-primary" id="goto-screen-3">
+                                Iniciar coleta com OrbiPen <span class="arrow-right">></span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- SCREEN 3: Execução do Exame (Análise em Tempo Real) -->
+                    <section class="app-screen" id="screen-3">
+                        <div class="screen-header-inner">
+                            <div></div>
+                            <h3>Coleta OrbiPen</h3>
+                            <div></div>
+                        </div>
+
+                        <div class="scanning-wrapper">
+                            <!-- Circular Progress Indicator -->
+                            <div class="progress-radial">
+                                <svg class="progress-ring" width="160" height="160">
+                                    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)"
+                                        stroke-width="8" fill="transparent" r="70" cx="80" cy="80" />
+                                    <circle class="progress-ring__circle" id="progressRing" stroke="#deff9a"
+                                        stroke-width="8" fill="transparent" r="70" cx="80" cy="80" />
+                                </svg>
+                                <div class="progress-label">
+                                    <span class="progress-percent" id="progressPercent">0%</span>
+                                    <span class="progress-status">Analisando</span>
+                                </div>
+                            </div>
+
+                            <p class="patient-name-display" id="activePatientDisplay">Paciente: --</p>
+                        </div>
+
+                        <!-- Hardware logs container -->
+                        <div class="log-container">
+                            <div class="log-header">
+                                <span>LOGS DO HARDWARE</span>
+                                <span class="pulse-dot-cyan"></span>
+                            </div>
+                            <div class="log-body" id="logBody">
+                                <!-- Dynamic logs will be appended here -->
+                            </div>
+                        </div>
+
+                        <div class="screen-footer">
+                            <button class="btn btn-secondary disabled" id="goto-screen-4" disabled>
+                                Simular Conclusão <span class="arrow-right">></span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- SCREEN 4: Uplink Espacial (Failover) -->
+                    <section class="app-screen" id="screen-4">
+                        <div class="screen-header-inner">
+                            <div></div>
+                            <h3>Uplink Ativo</h3>
+                            <div></div>
+                        </div>
+
+                        <div class="uplink-wrapper">
+                            <!-- Satellite Simulation Graphic -->
+                            <div class="satellite-scene">
+                                <div class="sat-satellite">
+                                    <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="#deff9a"
+                                        stroke-width="1.5">
+                                        <rect x="9" y="9" width="6" height="6" rx="1" />
+                                        <path d="M9 12H4M15 12h5M5 9h2v6H5zM17 9h2v6h-2zM12 9V5M12 15v4" />
+                                    </svg>
+                                </div>
+                                <div class="sat-beams">
+                                    <div class="beam-wave"></div>
+                                    <div class="beam-wave delay-1"></div>
+                                    <div class="beam-wave delay-2"></div>
+                                </div>
+                                <div class="sat-globe">
+                                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none"
+                                        stroke="rgba(255,255,255,0.2)" stroke-width="1">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10zM2 12h20" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="glass-card alert-card">
+                                <p class="alert-icon">⚠️</p>
+                                <p class="alert-text">
+                                    Sem rede terrestre (3G/4G/5G) detectada. Roteando pacotes compactados e
+                                    criptografados via satélite LEO diretamente para a nuvem de IA OrbiBrain.
+                                </p>
+                            </div>
+
+                            <div class="status-indicator-box" id="uplinkStatusBox">
+                                <div class="spinner" id="uplinkSpinner"></div>
+                                <span id="uplinkStatusText">Criptografando & Transmitindo...</span>
+                            </div>
+                        </div>
+
+                        <div class="screen-footer">
+                            <button class="btn btn-primary disabled" id="goto-screen-5" disabled>
+                                Ver Laudo Final
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- SCREEN 5: Relatório Médico e Laudo Final -->
+                    <section class="app-screen" id="screen-5">
+                        <div class="screen-header-inner">
+                            <div></div>
+                            <h3>Relatório Clínico</h3>
+                            <div></div>
+                        </div>
+
+                        <div class="report-wrapper">
+                            <!-- High risk alert card -->
+                            <div class="risk-card high-risk animate-pulse">
+                                <div class="risk-badge">ALTO ALERTA</div>
+                                <h3 class="risk-title">Nível de Risco: Alto</h3>
+                                <p class="risk-desc">Anomalia Celular / Marcador Oncológico Detectado pela IA OrbiBrain.
+                                </p>
+                            </div>
+
+                            <!-- Diagnostic Info Card -->
+                            <div class="glass-card diagnostic-details">
+                                <h4>Detalhes da Análise:</h4>
+                                <div class="details-grid">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Paciente</span>
+                                        <span class="detail-val" id="finalName">--</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Idade</span>
+                                        <span class="detail-val" id="finalAge">--</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Comunidade</span>
+                                        <span class="detail-val" id="finalRegion">--</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Confiança IA</span>
+                                        <span class="detail-val text-highlight">98.4%</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Marcador</span>
+                                        <span class="detail-val text-danger">M-ONC.04</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="screen-footer-double">
+                            <div class="button-row">
+                                <button class="btn btn-secondary" id="btnPdf">Salvar PDF</button>
+                                <button class="btn btn-primary" id="btnTele">Teleconsulta</button>
+                            </div>
+                            <a href="#" class="link-reset" id="resetFlow">Voltar para o Início</a>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Modal PDF Simulation -->
+                <div class="overlay-modal" id="pdfModal">
+                    <div class="modal-box">
+                        <div class="modal-header">
+                            <h4>Gerador de Relatórios</h4>
+                            <button class="close-modal" id="closePdfModal">&times;</button>
+                        </div>
+                        <div class="modal-body-content">
+                            <div class="pdf-icon-anim">📄</div>
+                            <p class="modal-title-bold">Relatório Clínico PDF</p>
+                            <p class="modal-subtitle-desc" id="pdfStatusDesc">Preparando criptografia de ponta a ponta...</p>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" id="pdfProgressBar"></div>
+                            </div>
+                            <span class="progress-percent-text" id="pdfPercentText">0%</span>
+                            <a id="downloadLink" href="#" class="btn btn-primary" style="margin-top: 15px; display: none;" download="Relatorio_OrbiMed.pdf">Baixar PDF Gerado</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Teleconsulta Simulation -->
+                <div class="overlay-modal" id="teleModal">
+                    <div class="tele-calling-screen">
+                        <button class="close-tele-modal" id="closeTeleModal">&times;</button>
+                        <div class="tele-doctor-avatar">
+                            <div class="avatar-placeholder" id="avatarPlaceholder">🩺</div>
+                            <div class="calling-pulse-rings" id="callingPulseRings">
+                                <div class="ring"></div>
+                                <div class="ring delay-1"></div>
+                            </div>
+                        </div>
+                        <h3 class="doctor-name" id="doctorName">Dr. Silva (IA Triagem)</h3>
+                        <p class="calling-status" id="callingStatus">Chamando Teleconsulta de Urgência...</p>
+
+                        <!-- Video Container (simulated doctor preview) -->
+                        <div class="local-video-preview" id="doctorVideoPreview" style="display: none;">
+                            <div class="doctor-active-badge">Em Chamada</div>
+                            <div class="local-cam-indicator">Conexão Estabelecida</div>
+                        </div>
+
+                        <div class="tele-controls">
+                            <button class="btn-decline" id="btnDeclineCall">
+                                ✕
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- iPhone Home Indicator Bar -->
+                <div class="iphone-home-indicator"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
