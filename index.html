@@ -179,7 +179,7 @@
                                 <label for="patientSymptoms">Sintomas Principais</label>
                                 <textarea id="patientSymptoms"
                                     placeholder="Ex: Fadiga extrema, nódulo linfático inflamado..." rows="3" required
-                                    autocomplete="off"></textarea>
+                                    autocomplete="off" style="resize: none;"></textarea>
                             </div>
                         </form>
 
@@ -354,12 +354,15 @@
                         <div class="modal-body-content">
                             <div class="pdf-icon-anim">📄</div>
                             <p class="modal-title-bold">Relatório Clínico PDF</p>
-                            <p class="modal-subtitle-desc" id="pdfStatusDesc">Preparando criptografia de ponta a ponta...</p>
+                            <p class="modal-subtitle-desc" id="pdfStatusDesc">Preparando criptografia de ponta a
+                                ponta...</p>
                             <div class="progress-bar-container">
                                 <div class="progress-bar-fill" id="pdfProgressBar"></div>
                             </div>
                             <span class="progress-percent-text" id="pdfPercentText">0%</span>
-                            <a id="downloadLink" href="#" class="btn btn-primary" style="margin-top: 15px; display: none;" download="Relatorio_OrbiMed.pdf">Baixar PDF Gerado</a>
+                            <a id="downloadLink" href="#" class="btn btn-primary"
+                                style="margin-top: 15px; display: none;" download="Relatorio_OrbiMed.pdf">Baixar PDF
+                                Gerado</a>
                         </div>
                     </div>
                 </div>
