@@ -34,22 +34,22 @@ O protótipo simula com fidelidade o design de um aplicativo de iPhone operando 
 
 ### 📸 Demonstração das Telas
 
-| 1. Dashboard Principal (Home) | 2. Cadastro de Paciente | 3. Execução do Exame |
-| :---: | :---: | :---: |
+|                            1. Dashboard Principal (Home)                             |                               2. Cadastro de Paciente                                |                               3. Execução do Exame                               |
+| :----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | <img src="screenshots/screen1_dashboard.png" width="220" alt="Dashboard Principal"/> | <img src="screenshots/screen2_register.png" width="220" alt="Cadastro do Paciente"/> | <img src="screenshots/screen3_collect.png" width="220" alt="Execução do Exame"/> |
-| Status da bateria do OrbiPen e indicador de satélite ativo. | Campos clínicos rápidos para triagem em comunidades isoladas. | Progresso radial interativo sincronizado com logs de hardware. |
+|             Status da bateria do OrbiPen e indicador de satélite ativo.              |            Campos clínicos rápidos para triagem em comunidades isoladas.             |          Progresso radial interativo sincronizado com logs de hardware.          |
 
-| 4. Uplink Espacial (LEO) | 5. Laudo Clínico Final |
-| :---: | :---: |
+|                             4. Uplink Espacial (LEO)                              |                          5. Laudo Clínico Final                           |
+| :-------------------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
 | <img src="screenshots/screen4_uplink.png" width="220" alt="Uplink Espacial LEO"/> | <img src="screenshots/screen5_report.png" width="220" alt="Laudo Final"/> |
-| Transmissão criptografada via failover satelital ativo. | Laudo emitido pelo OrbiBrain com alerta de alto risco. |
+|              Transmissão criptografada via failover satelital ativo.              |          Laudo emitido pelo OrbiBrain com alerta de alto risco.           |
 
 ### 🛠️ Novas Simulações da Tela Final
 
-| Geração de Relatório PDF | Teleconsulta de Urgência |
-| :---: | :---: |
-| <img src="screenshots/screen5_pdf.png" width="220" alt="Geração do PDF"/> | <img src="screenshots/screen5_teleconsult.png" width="220" alt="Chamada de Teleconsulta"/> |
-| Progresso de criptografia local 0-100% que gera um documento de texto formatado para download. | Discador com ondas pulsantes e abertura de transmissão de vídeo simulada após 2.5s. |
+|                                    Geração de Relatório PDF                                    |                                  Teleconsulta de Urgência                                  |
+| :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+|           <img src="screenshots/screen5_pdf.png" width="220" alt="Geração do PDF"/>            | <img src="screenshots/screen5_teleconsult.png" width="220" alt="Chamada de Teleconsulta"/> |
+| Progresso de criptografia local 0-100% que gera um documento de texto formatado para download. |    Discador com ondas pulsantes e abertura de transmissão de vídeo simulada após 2.5s.     |
 
 ---
 
@@ -59,7 +59,7 @@ Confira a apresentação curta do projeto (limite rigoroso de 3 minutos), detalh
 
 [![Apresentação OrbiMed](https://img.youtube.com/vi/SEU_ID_DO_VIDEO/0.jpg)](https://youtube.com/seu-link-do-pitch)
 
-*Clique na imagem acima para assistir à demonstração completa e defesa da arquitetura no YouTube.*
+_Clique na imagem acima para assistir à demonstração completa e defesa da arquitetura no YouTube._
 
 ---
 
@@ -70,11 +70,3 @@ Confira a apresentação curta do projeto (limite rigoroso de 3 minutos), detalh
 - **Ícones & Tipografia:** SVGs Inline / Outfit & JetBrains Mono Google Fonts
 
 ---
-
-## 👥 Integrantes do Grupo
-
-- **Ygor Silva Dias de Carvalho** - RM: 559244
-- **Rodrigo Belarmino de Oliveira** - RM: 559881
-- **Alexandre Coelho dos Santos Brito** - RM: 560505
-- **Murillo Cardoso Teixeira** - RM: 561197
-- **Aldair Schmitberger Junior** - RM: 561140
