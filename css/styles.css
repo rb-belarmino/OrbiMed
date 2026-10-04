@@ -1,0 +1,182 @@
+/* ==============================================================
+   ORBIMED — DESIGN SYSTEM & ESTILOS CUSTOMIZADOS
+   Cores Principais:
+   - Deep Space: #05070a
+   - Bio Lime: #deff9a
+   - Orbital Cyan: #38bdf8
+   ============================================================== */
+
+/* Custom Glassmorphism & Visual Polish */
+.glass-card {
+  background: rgba(13, 21, 34, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(222, 255, 154, 0.12);
+}
+
+.glass-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(222, 255, 154, 0.35);
+  box-shadow: 0 10px 35px -10px rgba(222, 255, 154, 0.15);
+  transform: translateY(-4px);
+}
+
+.glass-nav {
+  background: rgba(5, 7, 10, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(222, 255, 154, 0.3);
+}
+
+.radial-bg {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(56, 189, 248, 0.08) 0%,
+    rgba(5, 7, 10, 0) 70%
+  );
+}
+
+.orbital-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* ESTILOS DA SEÇÃO DE ANIMAÇÃO INTERATIVA - DATA FLOW CANVAS */
+.orbimed-hero-animation {
+  background: #05070a;
+  color: #ffffff;
+  padding: 70px 20px 80px;
+  text-align: center;
+  position: relative;
+}
+
+.animation-header h2 {
+  font-size: 2.3rem;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #deff9a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.badge-tech {
+  background: rgba(222, 255, 154, 0.1);
+  color: #deff9a;
+  border: 1px solid rgba(222, 255, 154, 0.3);
+  padding: 6px 18px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.canvas-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(222, 255, 154, 0.2);
+  border-radius: 20px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(222, 255, 154, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+#orbimedFlowCanvas {
+  width: 100%;
+  height: 440px;
+  display: block;
+}
+
+.animation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  background: rgba(5, 7, 10, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.btn-simulation {
+  background: rgba(222, 255, 154, 0.06);
+  border: 1px solid rgba(222, 255, 154, 0.4);
+  color: #deff9a;
+  padding: 11px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+}
+
+.btn-simulation:hover {
+  background: rgba(222, 255, 154, 0.18);
+  border-color: #deff9a;
+  box-shadow: 0 0 25px rgba(222, 255, 154, 0.35);
+  transform: translateY(-1px);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  transition: all 0.3s ease;
+}
+
+.status-indicator {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.status-online {
+  color: #22c55e;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.status-leo {
+  color: #38bdf8;
+  font-weight: 700;
+  text-shadow: 0 0 12px #38bdf8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b293e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #deff9a;
+}

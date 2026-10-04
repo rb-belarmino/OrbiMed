@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrbiMed — Saúde Preditiva e Conectividade Orbital</title>
+  <meta name="description"
+    content="Democratizando o acesso ao diagnóstico genômico em regiões isoladas através de IA e satélites LEO. Conheça o ecossistema OrbiPen, OrbiMed App e OrbiBrain.">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind Theme Script -->
+  <script src="js/tailwind.config.js"></script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body
+  class="bg-space-950 text-white font-sans antialiased selection:bg-bio-lime selection:text-space-950 min-h-screen relative overflow-x-hidden">
+
+  <!-- Canvas Background de Fundo para Estrelas Orbitais -->
+  <canvas id="starsCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-30"></canvas>
+
+  <!-- Barra de Notificação de Status de Telemetria -->
+  <div
+    class="relative z-50 bg-space-900/90 border-b border-white/5 py-1.5 px-4 text-xs font-mono text-gray-400 flex items-center justify-between">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center space-x-1.5 text-bio-lime">
+          <span class="w-2 h-2 rounded-full bg-bio-lime animate-ping"></span>
+          <span class="w-2 h-2 rounded-full bg-bio-lime -ml-3.5"></span>
+          <span class="font-semibold tracking-wider">ORBITAL LINK: ACTIVE</span>
+        </span>
+        <span class="text-gray-600">|</span>
+        <span class="hidden sm:inline text-gray-400">LEO Constellation: 550km Ku/Ka-Band</span>
+        <span class="text-gray-600 hidden sm:inline">|</span>
+        <span class="hidden md:inline text-orbital-cyan">AES-256 Quantum-Resistant Encrypted</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-400">Latência: <span id="telemetryLatency"
+            class="text-white font-semibold">42ms</span></span>
+        <span class="bg-space-800 px-2 py-0.5 rounded text-[10px] text-bio-lime border border-bio-lime/20">HEALTHKIT
+          READY</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Principal -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo OrbiMed -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div
+          class="w-10 h-10 rounded-xl bg-space-850 border border-bio-lime/30 flex items-center justify-center relative overflow-hidden group-hover:border-bio-lime transition-all shadow-[0_0_15px_rgba(222,255,154,0.15)]">
+          <div class="absolute inset-0 bg-gradient-to-br from-bio-lime/10 to-transparent"></div>
+          <i data-lucide="satellite" class="w-5 h-5 text-bio-lime transition-transform group-hover:rotate-12"></i>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center space-x-1.5">
+            <span class="text-xl font-bold tracking-tight text-white">Orbi<span class="text-bio-lime">Med</span></span>
+            <span
+              class="text-[9px] font-mono tracking-widest bg-bio-lime/10 text-bio-lime px-1.5 py-0.5 rounded border border-bio-lime/20 uppercase">SpaceTech</span>
+          </div>
+          <span class="text-[10px] text-gray-400 font-mono tracking-wider">PREDICTIVE HEALTHCARE</span>
+        </div>
+      </a>
+
+      <!-- Links de Navegação Desktop -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-300">
+        <a href="#fluxo-dados" class="hover:text-bio-lime transition-colors flex items-center gap-1.5 text-bio-lime">
+          <span class="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse"></span>
+          Fluxo de Dados
+        </a>
+        <a href="#solucao" class="hover:text-bio-lime transition-colors">O Problema</a>
+        <a href="#ecossistema" class="hover:text-bio-lime transition-colors">Ecossistema</a>
+        <a href="#arquitetura" class="hover:text-bio-lime transition-colors">Arquitetura C4</a>
+        <a href="#impacto" class="hover:text-bio-lime transition-colors">ESG &amp; Negócios</a>
+      </nav>
+
+      <!-- Ações do Header -->
+      <!-- Botão Protótipo Móvel iPhone 15 Pro -->
+      <a href="mobile-prototype.html" target="_blank"
+        class="inline-flex items-center space-x-1.5 text-xs font-mono uppercase tracking-wider text-orbital-cyan bg-orbital-cyan/10 hover:bg-orbital-cyan/20 border border-orbital-cyan/30 px-3 py-2 rounded-lg transition-all"
+        aria-label="Abrir Simulador Móvel iPhone 15 Pro em nova aba">
+        <i data-lucide="smartphone" class="w-4 h-4 text-orbital-cyan"></i>
+        <span>Protótipo iPhone</span>
+      </a>
+
+      <a href="#fluxo-dados"
+        class="hidden sm:inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2 rounded-lg transition-all">
+        <i data-lucide="activity" class="w-4 h-4"></i>
+        <span>Live Canvas</span>
+      </a>
+      <a href="#contato"
+        class="inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-semibold px-4 py-2 rounded-lg text-sm hover:bg-[#c9f17a] transition-all shadow-[0_0_20px_rgba(222,255,154,0.25)]">
+        <span>Relatório Executivo</span>
+        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden radial-bg orbital-grid">
+    <!-- Luzes de Ambiente -->
+    <div
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orbital-cyan/10 rounded-full blur-[140px] pointer-events-none">
+    </div>
+    <div
+      class="absolute top-1/3 left-1/4 w-[400px] h-[300px] bg-bio-lime/5 rounded-full blur-[120px] pointer-events-none">
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+        <!-- Conteúdo Principal do Hero (Col 7) -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+          <!-- Badge de Contexto Tecnológico -->
+          <div
+            class="inline-flex items-center space-x-2 bg-space-850/80 border border-bio-lime/20 rounded-full px-3.5 py-1.5 text-xs text-gray-300 backdrop-blur-md">
+            <span class="flex h-2 w-2 rounded-full bg-bio-lime animate-ping"></span>
+            <span class="font-mono text-bio-lime font-semibold">ARQUITETURA HÍBRIDA TERRA-ÓRBITA</span>
+            <span class="text-gray-500">|</span>
+            <span class="text-gray-300">Point-of-Care Bio-MEMS</span>
+          </div>
+
+          <!-- Headline de Alto Impacto -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+            Saúde Preditiva &amp; <br>
+            <span
+              class="bg-gradient-to-r from-bio-lime via-white to-orbital-cyan bg-clip-text text-transparent text-glow">
+              Conectividade Orbital.
+            </span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-lg sm:text-xl text-gray-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+            Democratizando o acesso ao diagnóstico genômico e molecular em regiões isoladas através de inteligência
+            artificial de ponta e satélites de órbita baixa (LEO).
+          </p>
+
+          <!-- Badges de Recursos -->
+          <div class="pt-2 flex flex-wrap gap-2.5 justify-center lg:justify-start">
+            <span
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-bio-lime"></i>
+              <span>Bio-MEMS Óptico</span>
+            </span>
+            <span
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-orbital-cyan">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-orbital-cyan"></i>
+              <span>Swift &amp; HealthKit Hub</span>
+            </span>
+            <span
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
+              <i data-lucide="wifi-off" class="w-3.5 h-3.5 text-bio-lime"></i>
+              <span>LEO Failover Automático</span>
+            </span>
+            <span
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Score em &lt; 3 minutos</span>
+            </span>
+          </div>
+
+          <!-- Chamadas de Ação (CTAs) -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#fluxo-dados"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-bio-lime text-space-950 font-bold px-7 py-4 rounded-xl text-base hover:bg-[#c9f17a] transition-all shadow-[0_0_30px_rgba(222,255,154,0.3)]">
+              <span>Ver Fluxo de Dados LEO</span>
+              <i data-lucide="arrow-down" class="w-5 h-5"></i>
+            </a>
+
+            <a href="#arquitetura"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-space-850 hover:bg-space-800 text-white font-medium px-7 py-4 rounded-xl text-base border border-white/15 hover:border-bio-lime/50 transition-all">
+              <i data-lucide="layers" class="w-5 h-5 text-bio-lime"></i>
+              <span>Ver Arquitetura Técnica</span>
+            </a>
+          </div>
+
+          <!-- Métricas Resumo -->
+          <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0 text-left">
+            <div>
+              <div class="text-2xl lg:text-3xl font-bold font-mono text-bio-lime">100%</div>
+              <div class="text-xs text-gray-400">Cobertura Territorial por Satélite</div>
+            </div>
+            <div>
+              <div class="text-2xl lg:text-3xl font-bold font-mono text-white">&lt; 180s</div>
+              <div class="text-xs text-gray-400">Coleta ao Laudo Preditivo</div>
+            </div>
+            <div>
+              <div class="text-2xl lg:text-3xl font-bold font-mono text-orbital-cyan">0.2mm</div>
+              <div class="text-xs text-gray-400">Microagulha Bio-MEMS</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mockup Visual Resumo -->
+        <div class="lg:col-span-5 relative">
+          <div class="glass-card rounded-2xl p-6 relative z-10 shadow-2xl border-white/15 overflow-hidden">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 text-xs font-mono">
+              <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-gray-400 ml-2">telemetry://field-node-amz-04</span>
+              </div>
+              <span class="text-bio-lime bg-bio-lime/10 px-2 py-0.5 rounded border border-bio-lime/20">LIVE
+                UPLINK</span>
+            </div>
+
+            <div class="py-5 space-y-4 font-mono text-xs">
+              <div class="p-3 rounded-xl bg-space-900/80 border border-bio-lime/20 flex items-center justify-between">
+                <span class="text-gray-300">1. OrbiPen Bio-MEMS</span>
+                <span class="text-bio-lime font-bold">BLE 5.3 Conectado</span>
+              </div>
+              <div
+                class="p-3 rounded-xl bg-space-900/80 border border-orbital-cyan/20 flex items-center justify-between">
+                <span class="text-gray-300">2. App iOS HealthKit</span>
+                <span class="text-orbital-cyan font-bold">AES-256 Assinado</span>
+              </div>
+              <div class="p-3 rounded-xl bg-space-900/80 border border-purple-400/20 flex items-center justify-between">
+                <span class="text-gray-300">3. Satélite LEO &amp; OrbiBrain</span>
+                <span class="text-purple-300 font-bold">Inferência &lt; 3min</span>
+              </div>
+            </div>
+
+            <a href="#fluxo-dados"
+              class="block text-center text-xs font-mono text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 p-2.5 rounded-lg border border-bio-lime/30 transition-all">
+              &darr; Interagir com o Canvas do Fluxo de Dados
+            </a>
+          </div>
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-bio-lime/20 via-orbital-cyan/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 -z-10">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- SEÇÃO DE ANIMAÇÃO INTERATIVA - ORBIMED DATAFLOW (CANVAS ENGINE) -->
+  <!-- ============================================================== -->
+  <section id="fluxo-dados" class="orbimed-hero-animation border-t border-b border-white/10">
+    <div class="animation-header max-w-3xl mx-auto">
+      <span class="badge-tech">ARQUITETURA HÍBRIDA &amp; CONECTIVIDADE ESPACIAL</span>
+      <h2>Fluxo de Dados de Triagem Preditiva em Tempo Real</h2>
+      <p class="text-gray-300 text-sm sm:text-base mt-2">
+        Acompanhe a jornada do dado clínico da coleta ao diagnóstico preditivo via satélites de órbita baixa (LEO).
+      </p>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="orbimedFlowCanvas"></canvas>
+
+      <!-- Painel Interativo de Simulação -->
+      <div class="animation-controls">
+        <button id="toggleFailoverBtn" class="btn-simulation">
+          <span class="status-dot"></span>
+          <span class="btn-text">Simular Redes Terrestres Offline (Ativar Failover LEO)</span>
+        </button>
+        <div id="connectionStatus" class="status-indicator">
+          Status Conexão: <strong id="statusLabel" class="status-online">4G / Terrestre Ativa</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O PROBLEMA X A SOLUÇÃO (O VAZIO ASSISTENCIAL) -->
+  <section id="solucao" class="py-24 relative bg-space-900/50 border-b border-white/5">
+    <div class="container mx-auto px-6">
+
+      <!-- Cabeçalho da Seção -->
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span
+          class="text-xs font-mono text-bio-lime uppercase tracking-widest bg-bio-lime/10 px-3 py-1 rounded-full border border-bio-lime/20">
+          O Paradigma da Saúde Isolada
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Superando o "Vazio Assistencial" com <br>
+          <span class="text-bio-lime">Tecnologia de Classe Espacial</span>
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg">
+          Milhões de pessoas vivem em áreas desprovidas de infraestrutura laboratorial e sem cobertura de redes móveis.
+          Nossa missão é extinguir esse isolamento.
+        </p>
+      </div>
+
+      <!-- Grid Comparativo -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+
+        <!-- CARD DO PROBLEMA -->
+        <div
+          class="glass-card rounded-2xl p-8 border-red-500/20 relative overflow-hidden flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 text-red-400">
+              <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">O Desafio Crítico Atual</h3>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Comunidades ribeirinhas, reservas indígenas, minerações remotas e fronteiras agrícolas sofrem com o modelo
+              laboratorial centralizado e logísticas inviáveis.
+            </p>
+
+            <ul class="space-y-3.5 text-sm text-gray-300">
+              <li class="flex items-start space-x-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>7 a 30 dias</strong> para retorno de exames enviados a laboratórios centrais.</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>Quebra de cadeia de frio</strong> que invalida amostras biológicas durante transporte
+                  fluvial ou terrestre precário.</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>Apagão de conectividade:</strong> mais de 65% do território geográfico isolado não possui
+                  3G/4G/5G.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-gray-400 font-mono">
+            <span>CUSTO LOGÍSTICO ELEVADO</span>
+            <span class="text-red-400 font-semibold">DIAGNÓSTICO TARDIO</span>
+          </div>
+        </div>
+
+        <!-- CARD DA SOLUÇÃO (ORBIMED) -->
+        <div
+          class="glass-card rounded-2xl p-8 border-bio-lime/30 relative overflow-hidden flex flex-col justify-between shadow-[0_0_40px_rgba(222,255,154,0.08)]">
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 text-bio-lime">
+              <div
+                class="w-10 h-10 rounded-xl bg-bio-lime/10 border border-bio-lime/40 flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-5 h-5 text-bio-lime"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">A Solução OrbiMed (Point-of-Care)</h3>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Inspirada no programa de exploração espacial <strong>Artemis</strong> — projetado para monitorar
+              astronautas sem suporte de hospitais terrestres — trouxemos a biotecnologia ultra-resiliente para o campo.
+            </p>
+
+            <ul class="space-y-3.5 text-sm text-gray-300">
+              <li class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-bio-lime flex-shrink-0 mt-0.5"></i>
+                <span><strong>Laudo em &lt; 3 minutos:</strong> análise molecular in loco dispensando transporte de
+                  tubos.</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-bio-lime flex-shrink-0 mt-0.5"></i>
+                <span><strong>Microagulha seca e estável:</strong> sem necessidade de refrigeração ou reagentes líquidos
+                  perecíveis.</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-bio-lime flex-shrink-0 mt-0.5"></i>
+                <span><strong>Conectividade orbital garantida:</strong> failover automático e transparente via satélites
+                  de órbita baixa (LEO).</span>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="mt-8 pt-4 border-t border-bio-lime/20 flex items-center justify-between text-xs text-gray-400 font-mono">
+            <span class="text-bio-lime">DERIVADO DO PROGRAMA ARTEMIS</span>
+            <span class="text-white font-semibold">100% POINT-OF-CARE</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- O ECOSSISTEMA ORBIMED (TRÊS PILARES) -->
+  <section id="ecossistema" class="py-28 relative">
+    <div class="container mx-auto px-6">
+
+      <!-- Cabeçalho -->
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-20">
+        <span
+          class="text-xs font-mono text-orbital-cyan uppercase tracking-widest bg-orbital-cyan/10 px-3 py-1 rounded-full border border-orbital-cyan/20">
+          Engenharia Integrada
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          O Ecossistema <span class="text-bio-lime">OrbiMed</span>
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg">
+          Três pilares perfeitamente orquestrados para entregar diagnóstico laboratorial em qualquer coordenada do
+          planeta Terra.
+        </p>
+      </div>
+
+      <!-- Grid dos Três Pilares -->
+      <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- PILAR 1: ORBIPEN -->
+        <div class="glass-card glass-card-hover rounded-2xl p-8 flex flex-col justify-between relative group">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div
+                class="w-14 h-14 rounded-2xl bg-bio-lime/10 border border-bio-lime/30 flex items-center justify-center text-bio-lime shadow-[0_0_20px_rgba(222,255,154,0.2)]">
+                <i data-lucide="activity" class="w-7 h-7"></i>
+              </div>
+              <span
+                class="text-xs font-mono text-bio-lime bg-bio-lime/10 px-2.5 py-1 rounded border border-bio-lime/20 uppercase">Pilar
+                01</span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-white group-hover:text-bio-lime transition-colors">OrbiPen</h3>
+              <p class="text-xs font-mono text-gray-400 mt-0.5">HARDWARE IOT / BIO-MEMS</p>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Dispositivo portátil de mão com tecnologia microeletromecânica (Bio-MEMS) para triagem molecular e
+              espectrometria óptica minimamente invasiva.
+            </p>
+
+            <div class="space-y-3 pt-2 text-xs font-mono border-t border-white/10">
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-bio-lime"></i> Microagulha descartável</span>
+                <span class="text-white font-semibold">0.2mm estéril</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-bio-lime"></i> Sensor óptico</span>
+                <span class="text-white font-semibold">400nm - 900nm</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-bio-lime"></i> Conectividade</span>
+                <span class="text-white font-semibold">BLE 5.3 + Secure Enclave</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-gray-400">Tempo de coleta: &lt; 15s</span>
+            <button onclick="openModal('orbipen')"
+              class="text-xs font-mono text-bio-lime hover:underline flex items-center gap-1">
+              Especificações <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- PILAR 2: ORBIMED APP -->
+        <div
+          class="glass-card glass-card-hover rounded-2xl p-8 flex flex-col justify-between relative group border-orbital-cyan/20">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div
+                class="w-14 h-14 rounded-2xl bg-orbital-cyan/10 border border-orbital-cyan/30 flex items-center justify-center text-orbital-cyan shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+                <i data-lucide="smartphone" class="w-7 h-7"></i>
+              </div>
+              <span
+                class="text-xs font-mono text-orbital-cyan bg-orbital-cyan/10 px-2.5 py-1 rounded border border-orbital-cyan/20 uppercase">Pilar
+                02</span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-white group-hover:text-orbital-cyan transition-colors">OrbiMed App</h3>
+              <p class="text-xs font-mono text-gray-400 mt-0.5">MOBILE HYBRID-FIRST (SWIFT / IOS)</p>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Aplicação de campo em Swift com integração ao Apple HealthKit como hub universal de biomarcadores e
+              roteador inteligente com failover transparente para LEO.
+            </p>
+
+            <div class="space-y-3 pt-2 text-xs font-mono border-t border-white/10">
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-orbital-cyan"></i> Linguagem &amp; UI</span>
+                <span class="text-white font-semibold">Swift 6 &amp; SwiftUI</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-orbital-cyan"></i> Hub Biométrico</span>
+                <span class="text-white font-semibold">Apple HealthKit SDK</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-orbital-cyan"></i> Failover Dinâmico</span>
+                <span class="text-white font-semibold">Wi-Fi &gt; 4G &gt; LEO Sat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <a href="mobile-prototype.html" target="_blank"
+              class="text-xs font-mono text-bio-lime hover:underline flex items-center gap-1 font-semibold"
+              aria-label="Abrir Simulador Interativo do iPhone 15 Pro">
+              <i data-lucide="play" class="w-3 h-3 text-bio-lime"></i> Testar no iPhone 15 Pro
+            </a>
+            <button onclick="openModal('app')"
+              class="text-xs font-mono text-orbital-cyan hover:underline flex items-center gap-1">
+              Arquitetura App <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- PILAR 3: ORBIBRAIN -->
+        <div
+          class="glass-card glass-card-hover rounded-2xl p-8 flex flex-col justify-between relative group border-purple-500/20">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div
+                class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+              </div>
+              <span
+                class="text-xs font-mono text-purple-300 bg-purple-500/10 px-2.5 py-1 rounded border border-purple-500/20 uppercase">Pilar
+                03</span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">OrbiBrain</h3>
+              <p class="text-xs font-mono text-gray-400 mt-0.5">PREDICTIVE AI ENGINE (CLOUD)</p>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Motor de Inteligência Artificial em nuvem combinando APIs ultra-rápidas em Golang com modelos de Deep
+              Learning em Python para inferência de risco e laudos automatizados.
+            </p>
+
+            <div class="space-y-3 pt-2 text-xs font-mono border-t border-white/10">
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-purple-400"></i> Gateway &amp; Ingestion</span>
+                <span class="text-white font-semibold">Golang Microservices</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-purple-400"></i> Modelos Preditivos</span>
+                <span class="text-white font-semibold">PyTorch / XGBoost</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-purple-400"></i> Inferência Média</span>
+                <span class="text-white font-semibold">&lt; 850 milissegundos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-gray-400">Score explicável (SHAP)</span>
+            <button onclick="openModal('brain')"
+              class="text-xs font-mono text-purple-300 hover:underline flex items-center gap-1">
+              Modelos de IA <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENGENHARIA E ARQUITETURA DO SISTEMA (C4 MODEL) -->
+  <section id="arquitetura" class="py-28 relative bg-space-900/40 border-t border-b border-white/5">
+    <div class="container mx-auto px-6">
+
+      <!-- Cabeçalho -->
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span
+          class="text-xs font-mono text-bio-lime uppercase tracking-widest bg-bio-lime/10 px-3 py-1 rounded-full border border-bio-lime/20">
+          Engenharia de Missão Crítica
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Arquitetura do Sistema <br>
+          <span class="text-bio-lime font-mono text-3xl sm:text-4xl">[C4 Architecture Model]</span>
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg">
+          Desenvolvida sob os mais rigorosos padrões aeroespaciais e de privacidade médica internacional.
+        </p>
+      </div>
+
+      <!-- Abas de Camada C4 -->
+      <div class="flex justify-center mb-10">
+        <div class="inline-flex p-1.5 rounded-xl bg-space-850 border border-white/10 text-xs font-mono">
+          <button onclick="switchC4Tab('all')" id="tab-all"
+            class="px-4 py-2 rounded-lg bg-bio-lime text-space-950 font-bold transition-all">
+            Visão Geral Completa
+          </button>
+          <button onclick="switchC4Tab('field')" id="tab-field"
+            class="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all">
+            1. Field (Campo)
+          </button>
+          <button onclick="switchC4Tab('orbital')" id="tab-orbital"
+            class="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all">
+            2. Orbital Connectivity
+          </button>
+          <button onclick="switchC4Tab('cloud')" id="tab-cloud"
+            class="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all">
+            3. Cloud Backend
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid Visual C4 Model -->
+      <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- BLOCO 1: FIELD (CAMPO) -->
+        <div id="c4-card-field" class="glass-card rounded-2xl p-7 border-bio-lime/20 relative group transition-all">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-9 h-9 rounded-lg bg-bio-lime/10 border border-bio-lime/30 flex items-center justify-center text-bio-lime">
+                <i data-lucide="radio" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white">1. Field Layer</h3>
+            </div>
+            <span
+              class="text-[10px] font-mono text-bio-lime bg-bio-lime/10 px-2 py-0.5 rounded border border-bio-lime/20">CAMPO</span>
+          </div>
+
+          <p class="text-xs text-gray-400 my-4">
+            Componentes executados no ponto de atendimento clínico isolado, operados por agentes de saúde ou equipes de
+            emergência.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>OrbiPen Bio-MEMS</span>
+                <span class="text-[10px] text-bio-lime">Firmware C/FreeRTOS</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Coleta óptica e eletroquímica de amostras capilares sem dor.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>BLE 5.3 Secure Protocol</span>
+                <span class="text-[10px] text-bio-lime">Enclave Criptográfico</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Canal autenticado por chave pública de hardware ECDSA.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>OrbiMed iOS Host Client</span>
+                <span class="text-[10px] text-orbital-cyan">Swift 6 / CoreData</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Armazenamento offline SQLite criptografado (AES-256) e UI responsiva.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCO 2: ORBITAL CONNECTIVITY (SATÉLITES) -->
+        <div id="c4-card-orbital"
+          class="glass-card rounded-2xl p-7 border-orbital-cyan/20 relative group transition-all">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-9 h-9 rounded-lg bg-orbital-cyan/10 border border-orbital-cyan/30 flex items-center justify-center text-orbital-cyan">
+                <i data-lucide="satellite" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white">2. Orbital Mesh</h3>
+            </div>
+            <span
+              class="text-[10px] font-mono text-orbital-cyan bg-orbital-cyan/10 px-2 py-0.5 rounded border border-orbital-cyan/20">SATÉLITES</span>
+          </div>
+
+          <p class="text-xs text-gray-400 my-4">
+            Infraestrutura de transporte resiliente que garante continuidade de envio de dados sem depender de
+            operadoras terrestres.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>Dynamic Failover Gateway</span>
+                <span class="text-[10px] text-orbital-cyan">Multi-Bearer Engine</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Alternância instantânea: Wi-Fi -&gt; 4G/LTE -&gt; LEO Satellite
+                transceptor.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>Micro-Packet Protocol</span>
+                <span class="text-[10px] text-orbital-cyan">MQTT-SN / ZSTD</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Compressão de dados biométricos em pacotes ultra-leves &lt; 4 KB.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>LEO Constellation Relay</span>
+                <span class="text-[10px] text-orbital-cyan">Starlink / Iridium</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Órbita baixa (550 km) com tempo de viagem de sinal reduzido para &lt;
+                60ms.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCO 3: CLOUD BACKEND (NUVEM & ORBIBRAIN) -->
+        <div id="c4-card-cloud" class="glass-card rounded-2xl p-7 border-purple-500/20 relative group transition-all">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-9 h-9 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <i data-lucide="cloud" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white">3. Cloud Backend</h3>
+            </div>
+            <span
+              class="text-[10px] font-mono text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">ORBIBRAIN</span>
+          </div>
+
+          <p class="text-xs text-gray-400 my-4">
+            Cluster de computação distribuída em nuvem que ingere, valida, processa via Machine Learning e gera laudos
+            clínicos.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>Golang Ingestion Mesh</span>
+                <span class="text-[10px] text-purple-300">gRPC / Microservices</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Processamento concorrente massivo com latência submilisegundo.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>OrbiBrain ML Cluster</span>
+                <span class="text-[10px] text-purple-300">Python / PyTorch</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Modelos preditivos treinados para detecção precoce de biomarcadores.
+              </p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>EHR &amp; SUS / FHIR Adapter</span>
+                <span class="text-[10px] text-purple-300">HL7 / FHIR R4</span>
+              </div>
+              <p class="text-gray-400 text-[11px]">Interoperabilidade com prontuários públicos (ConecteSUS) e privados.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODELO DE NEGÓCIOS & IMPACTO ESG (ODS ONU) -->
+  <section id="impacto" class="py-24 relative bg-space-900/40 border-t border-white/5">
+    <div class="container mx-auto px-6">
+
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span
+          class="text-xs font-mono text-bio-lime uppercase tracking-widest bg-bio-lime/10 px-3 py-1 rounded-full border border-bio-lime/20">
+          Sustentabilidade &amp; Mercado
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Modelo de Negócios &amp; <br>
+          <span class="text-bio-lime">Impacto ESG Global</span>
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg">
+          Unindo viabilidade econômica de alto retorno a uma transformação social sem precedentes em saúde pública.
+        </p>
+      </div>
+
+      <!-- Segmentos de Mercado -->
+      <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
+        <div class="glass-card rounded-2xl p-8 border-white/10 hover:border-bio-lime/30 transition-all">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-12 h-12 rounded-xl bg-bio-lime/10 border border-bio-lime/30 flex items-center justify-center text-bio-lime">
+              <i data-lucide="landmark" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-bio-lime">VERTICAL 01</span>
+              <h3 class="text-xl font-bold text-white">B2G — Governos &amp; SUS Itinerante</h3>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Atendimento a programas públicos de saúde preventiva, barcos-hospital da Marinha, postos de fronteira e
+            Distritos Sanitários Especiais Indígenas (DSEI).
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-8 border-white/10 hover:border-orbital-cyan/30 transition-all">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-12 h-12 rounded-xl bg-orbital-cyan/10 border border-orbital-cyan/30 flex items-center justify-center text-orbital-cyan">
+              <i data-lucide="briefcase" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-orbital-cyan">VERTICAL 02</span>
+              <h3 class="text-xl font-bold text-white">Enterprise — Operações Remotas</h3>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Solução chave-na-mão para companhias de mineração em áreas remotas, plataformas offshore de petróleo &amp;
+            gás, frentes agrícolas e expedições logísticas.
+          </p>
+        </div>
+      </div>
+
+      <!-- SELOS ODS DA ONU -->
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-8">
+          <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">Compromisso com as Nações Unidas
+            (ONU)</span>
+          <h3 class="text-xl font-bold text-white mt-1">Alinhamento aos Objetivos de Desenvolvimento Sustentável</h3>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-space-850/80 border border-green-500/20">
+            <span class="text-2xl font-black text-green-400 font-mono">ODS 3</span>
+            <h4 class="text-base font-bold text-white mt-2">Saúde e Bem-Estar</h4>
+            <p class="text-xs text-gray-400 leading-relaxed mt-1">Extinção do isolamento geográfico através de
+              diagnóstico precoce em campo.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-space-850/80 border border-orange-500/20">
+            <span class="text-2xl font-black text-orange-400 font-mono">ODS 9</span>
+            <h4 class="text-base font-bold text-white mt-2">Indústria &amp; Inovação</h4>
+            <p class="text-xs text-gray-400 leading-relaxed mt-1">Infraestrutura resiliente unindo semicondutores
+              Bio-MEMS a satélites LEO.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-space-850/80 border border-yellow-500/20">
+            <span class="text-2xl font-black text-yellow-400 font-mono">ODS 11</span>
+            <h4 class="text-base font-bold text-white mt-2">Comunidades Sustentáveis</h4>
+            <p class="text-xs text-gray-400 leading-relaxed mt-1">Resiliência para populações remotas e trabalhadores de
+              campo.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTATO / INVESTIDORES -->
+  <section id="contato" class="py-24 relative overflow-hidden">
+    <div class="container mx-auto px-6 relative z-10">
+      <div
+        class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border-bio-lime/30 text-center relative overflow-hidden shadow-2xl">
+        <div class="space-y-6 max-w-2xl mx-auto">
+          <span
+            class="text-xs font-mono text-bio-lime uppercase tracking-widest bg-bio-lime/10 px-3 py-1 rounded-full border border-bio-lime/20">
+            Acesso Estratégico &amp; Relações com Investidores
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Pronto para transformar a fronteira da <br>
+            <span class="text-bio-lime">Medicina Preditiva Global?</span>
+          </h2>
+
+          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+            Solicite o Pitch Deck executivo completo, o Data Room com resultados de bancada e o plano piloto diretamente
+            com a diretoria executiva da OrbiMed.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="mailto:invest@orbimed.tech"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-bio-lime text-space-950 font-bold px-8 py-4 rounded-xl text-base hover:bg-[#c9f17a] transition-all shadow-[0_0_30px_rgba(222,255,154,0.3)]">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              <span>Falar com o CEO &amp; Fundadores</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ EXECUTIVO -->
+  <footer class="bg-space-900 border-t border-white/10 pt-16 pb-12 relative z-10 text-xs">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-gray-500 text-[11px] gap-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-base font-bold text-white">Orbi<span class="text-bio-lime">Med</span></span>
+          <span>&copy; 2026 OrbiMed Technologies Inc. Todos os direitos reservados.</span>
+        </div>
+        <div class="flex items-center space-x-2 text-bio-lime font-mono">
+          <span class="w-2 h-2 rounded-full bg-bio-lime animate-pulse"></span>
+          <span>Orbital Link: Active (Starlink / LEO)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE ESPECIFICAÇÕES DETALHADAS -->
+  <div id="specModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div
+      class="glass-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 border-bio-lime/30 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1 rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="modalContent" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- JAVASCRIPT: ENGINES DE ANIMAÇÃO, DATAFLOW CANVAS & CONTROLES  -->
+  <!-- ============================================================== -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
