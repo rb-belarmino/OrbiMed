@@ -14,7 +14,7 @@
   Inspirada no programa espacial <i>Artemis</i> da NASA, a <b>OrbiMed</b> combina sensores ópticos Bio-MEMS, processamento local via Swift CoreML e comunicação transparente com satélites de órbita baixa (LEO).
 </p>
 
-[🌐 Explorar Landing Page](index.html) • [📱 Abrir Simulador iPhone 15 Pro](mobile-prototype.html) • [📊 Painel Executivo](#-entregáveis-executivos--pitch)
+[🌐 Explorar Landing Page](index.html) • [📊 Painel Executivo](#-entregáveis-executivos)
 
 </div>
 
@@ -72,41 +72,7 @@ A **OrbiMed** soluciona esse gargalo crítico através de uma plataforma _Point-
 
 ---
 
-## 📱 Protótipo Móvel Funcional (iPhone 15 Pro)
 
-O repositório conta com uma simulação interativa de alta fidelidade visual e funcional em [`mobile-prototype.html`](mobile-prototype.html), executada no chassis do **iPhone 15 Pro** com **Dynamic Island** reativa e transições entre as 5 telas do ciclo clínico:
-
-```
-[Tela 1: Dashboard BLE] ──> [Tela 2: Ficha Triagem] ──> [Tela 3: CoreML Edge] ──> [Tela 4: Uplink LEO] ──> [Tela 5: Laudo & Risk Score]
-```
-
-### 1. Camada de Coleta Interoperável (Tela 1 & 2)
-
-- Driver compatível com padrões biométricos abertos:
-  - `ESP32 Testbed` (GATT Custom Profile para validação laboratorial).
-  - `Oxímetro / Glicosímetro BLE Comercial` (BLE SIG Health Profiles).
-  - `OrbiPen Bio-MEMS` (Driver proprietário com espectro estendido).
-- Leitura instantânea de SpO2, glicose capilar e espectro pico com indicador de RSSI e bateria.
-
-### 2. Processamento de Borda Autônomo (Tela 3)
-
-- Execução local via **Swift CoreML** sem requisição de rede.
-- Extração espectral, normalização e criptografia no _Secure Enclave_ (`AES-GCM-256 + ECDSA P-256`).
-- Emissão de status: _"Análise Genômica / Preditiva de Borda Concluída"_ em **< 400ms**.
-
-### 3. Simulador de Fallback & Enlace Orbital (Tela 4)
-
-- Controle de rede comutável em tempo real:
-  - **Com Internet (4G/5G/Wi-Fi)**: Disparo REST/gRPC com retorno em `< 1s`.
-  - **Sem Internet (Offline / Isolado)**: Ativação instantânea da rotina **LEO Failover**, compressão diferencial Brotli (redução de 92% do payload para 2.4 KB) e animação de ondas de radar concêntricas com uplink espacial.
-
-### 4. Laudo Preditivo & Persistência Local (Tela 5)
-
-- Apresentação do **Risk Score Preditivo** com classificação de gravidade.
-- Ação **"Salvar na Fila Local (Offline)"** para sincronização diferida em áreas remotas.
-- Botão **"Nova Triagem"** com ciclo completo de redefinição de estado.
-
----
 
 ## 🗂️ Organização Modular do Código (Separated Concerns)
 
@@ -141,11 +107,10 @@ O projeto foi totalmente refatorado com separação estrita de responsabilidades
 
 ---
 
-## 📊 Entregáveis Executivos & Pitch
+## 📊 Entregáveis Executivos
 
-- **Protótipo Interativo**: [Abrir Simulador iPhone 15 Pro](mobile-prototype.html)
 - **Painel & Canvas em Tempo Real**: [Visualizar Data Flow Canvas](index.html#fluxo-dados)
-- **Deck & Data Room Técnico**: Acessível pelo botão _"Relatório Executivo"_ no Header do site ou via [invest@orbimed.tech](mailto:invest@orbimed.tech).
+- **Contato & Deck Técnico**: Acessível via [invest@orbimed.tech](mailto:invest@orbimed.tech).
 
 ---
 
@@ -157,11 +122,8 @@ Como a aplicação é orientada a padrões web modernos (_ES6 Vanilla, HTML5 Can
 # Clone ou acesse o diretório do projeto
 cd /Users/rodrigobelarmino/Documents/DEV/OrbiMed
 
-# 1. Abrir a Landing Page Institucional
+# Abrir a Landing Page Institucional
 open index.html
-
-# 2. Abrir diretamente o Simulador Móvel iPhone 15 Pro
-open mobile-prototype.html
 ```
 
 ---

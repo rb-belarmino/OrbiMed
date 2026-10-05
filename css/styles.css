@@ -180,3 +180,35 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #deff9a;
 }
+
+/* ===== BLE & STARLINK ANIMATIONS ===== */
+
+/* BLE Pulse Ring — animação de conectividade Bluetooth */
+@keyframes ble-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.2); }
+}
+
+.ble-pulse-icon {
+  animation: ble-pulse 1.8s ease-in-out infinite;
+}
+
+/* Starlink glow — destaque do ícone de satélite LEO */
+@keyframes starlink-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(56,189,248,0.4)); }
+  50% { filter: drop-shadow(0 0 14px rgba(56,189,248,0.9)); }
+}
+
+.starlink-glow-icon {
+  animation: starlink-glow 2.5s ease-in-out infinite;
+}
+
+/* Fade-in suave para os cards da seção MVP */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mvp-card-enter {
+  animation: fade-in-up 0.55s ease both;
+}

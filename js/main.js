@@ -52,22 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 1,
       label: 'OrbiPen',
-      sub: 'IoT Bio-MEMS',
+      sub: 'ESP32 + Bio-MEMS',
       x: 0.1,
       y: 0.58,
       icon: '🖊️'
     },
     {
       id: 2,
-      label: 'App Mobile',
-      sub: 'Swift iOS',
+      label: 'iPad/iOS',
+      sub: 'Swift + HealthKit',
       x: 0.3,
       y: 0.58,
       icon: '📱'
     },
     {
       id: 3,
-      label: 'Satélite LEO',
+      label: 'Starlink LEO',
       sub: 'Órbita 550km',
       x: 0.5,
       y: 0.22,
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', () => {
       isLeoMode = !isLeoMode
       if (isLeoMode) {
-        statusLabel.textContent = 'Satélite LEO (Failover Ativo)'
+        statusLabel.textContent = 'Starlink LEO (Failover Ativo)'
         statusLabel.className = 'status-leo'
         statusDot.style.backgroundColor = '#38bdf8'
         statusDot.style.boxShadow = '0 0 10px #38bdf8'
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDot.style.backgroundColor = '#22c55e'
         statusDot.style.boxShadow = '0 0 10px #22c55e'
         toggleBtn.querySelector('.btn-text').textContent =
-          'Simular Redes Terrestres Offline (Ativar Failover LEO)'
+          'Simular Redes Terrestres Offline (Ativar Failover Starlink LEO)'
       }
     })
   }
@@ -362,39 +362,55 @@ const modalContent = {
   orbipen: `
     <div class="flex items-center space-x-3 text-bio-lime mb-2">
       <i data-lucide="cpu" class="w-6 h-6"></i>
-      <h3 class="text-xl font-bold text-white">Especificações: OrbiPen</h3>
+      <h3 class="text-xl font-bold text-white">Especificações: OrbiPen MVP</h3>
     </div>
-    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">HARDWARE BIO-MEMS & SENSORIAMENTO ÓPTICO</p>
+    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">HARDWARE IoT — ESP32 / ARDUINO + BIO-MEMS + BLE 5.3</p>
     <div class="space-y-3 text-xs text-gray-300">
-      <p>A <strong>OrbiPen</strong> foi desenvolvida para dispensar tubos de coleta e refrigeração, realizando triagem rápida com microagulha descartável indolor de 0.2mm.</p>
+      <p>A <strong>OrbiPen</strong> utiliza microcontrolador <strong class="text-bio-lime">ESP32 / Arduino Nano 33 BLE</strong> de baixo custo como base do MVP. Realiza triagem molecular e espectrometria óptica minimamente invasiva, transmitindo via <strong class="text-bio-lime">BLE 5.3</strong> em tempo real ao dispositivo iOS/iPadOS pareado — sem necessidade de transporte de amostras ou refrigeração.</p>
       <div class="grid grid-cols-2 gap-3 pt-2 font-mono">
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Espectro</span>
-          <span class="text-white font-bold">400nm - 900nm</span>
+          <span class="text-gray-500 block">Microcontrolador</span>
+          <span class="text-white font-bold">ESP32 / Arduino Nano 33</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Conexão</span>
-          <span class="text-white font-bold">BLE 5.3 + ECDSA</span>
+          <span class="text-gray-500 block">Conectividade</span>
+          <span class="text-bio-lime font-bold">BLE 5.3 + ECDSA</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">Espectro óptico</span>
+          <span class="text-white font-bold">400nm – 900nm</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">Microagulha</span>
+          <span class="text-white font-bold">0.2mm estéril</span>
         </div>
       </div>
     </div>
   `,
   app: `
     <div class="flex items-center space-x-3 text-orbital-cyan mb-2">
-      <i data-lucide="smartphone" class="w-6 h-6"></i>
-      <h3 class="text-xl font-bold text-white">Arquitetura Mobile: OrbiMed App</h3>
+      <i data-lucide="tablet" class="w-6 h-6"></i>
+      <h3 class="text-xl font-bold text-white">Arquitetura: OrbiMed App</h3>
     </div>
-    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">SWIFT IOS & APPLE HEALTHKIT INTEGRATION</p>
+    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">NATIVO UNIVERSAL iOS &amp; iPadOS · SWIFT 6 · APPLE HEALTHKIT</p>
     <div class="space-y-3 text-xs text-gray-300">
-      <p>O aplicativo opera de forma 100% offline-first. Assina o payload clínico localmente no Enclave de Segurança do iPhone e comuta de canal automaticamente.</p>
+      <p>Aplicativo <strong class="text-orbital-cyan">nativo e universal</strong> para iPhone e iPad. No <strong>iPad</strong>, oferece interface ampliada ideal para prontuários, teleconferência e uso por agentes de campo. Opera 100% offline-first, assinando o payload clínico localmente no Secure Enclave e comutando de canal automaticamente via failover <strong class="text-orbital-cyan">Starlink LEO</strong>.</p>
       <div class="grid grid-cols-2 gap-3 pt-2 font-mono">
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Hub</span>
+          <span class="text-gray-500 block">Plataformas</span>
+          <span class="text-white font-bold">iPhone &amp; iPad (Universal)</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">Hub Biométrico</span>
           <span class="text-white font-bold">Apple HealthKit</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">IA de Borda</span>
+          <span class="text-white font-bold">CoreML Neural Engine</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
           <span class="text-gray-500 block">Failover</span>
-          <span class="text-white font-bold">Wi-Fi &gt; 4G &gt; LEO</span>
+          <span class="text-orbital-cyan font-bold">Wi-Fi &gt; 4G &gt; Starlink</span>
         </div>
       </div>
     </div>

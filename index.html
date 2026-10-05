@@ -91,14 +91,6 @@
       </nav>
 
       <!-- Ações do Header -->
-      <!-- Botão Protótipo Móvel iPhone 15 Pro -->
-      <a href="mobile-prototype.html" target="_blank"
-        class="inline-flex items-center space-x-1.5 text-xs font-mono uppercase tracking-wider text-orbital-cyan bg-orbital-cyan/10 hover:bg-orbital-cyan/20 border border-orbital-cyan/30 px-3 py-2 rounded-lg transition-all"
-        aria-label="Abrir Simulador Móvel iPhone 15 Pro em nova aba">
-        <i data-lucide="smartphone" class="w-4 h-4 text-orbital-cyan"></i>
-        <span>Protótipo iPhone</span>
-      </a>
-
       <a href="#fluxo-dados"
         class="hidden sm:inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2 rounded-lg transition-all">
         <i data-lucide="activity" class="w-4 h-4"></i>
@@ -156,24 +148,24 @@
           <!-- Badges de Recursos -->
           <div class="pt-2 flex flex-wrap gap-2.5 justify-center lg:justify-start">
             <span
-              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-bio-lime">
               <i data-lucide="cpu" class="w-3.5 h-3.5 text-bio-lime"></i>
-              <span>Bio-MEMS Óptico</span>
+              <span>ESP32 / Bio-MEMS + BLE</span>
             </span>
             <span
-              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-orbital-cyan">
-              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-orbital-cyan"></i>
-              <span>Swift &amp; HealthKit Hub</span>
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-orbital-cyan/30 text-orbital-cyan">
+              <i data-lucide="tablet" class="w-3.5 h-3.5 text-orbital-cyan"></i>
+              <span>iOS &amp; iPadOS Universal</span>
             </span>
             <span
               class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
-              <i data-lucide="wifi-off" class="w-3.5 h-3.5 text-bio-lime"></i>
-              <span>LEO Failover Automático</span>
+              <i data-lucide="satellite" class="w-3.5 h-3.5 text-bio-lime"></i>
+              <span>Starlink Failover Automático</span>
             </span>
             <span
               class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-mono bg-space-850 border border-white/10 text-gray-300">
               <i data-lucide="brain" class="w-3.5 h-3.5 text-purple-400"></i>
-              <span>Score em &lt; 3 minutos</span>
+              <span>Laudo em &lt; 3 minutos</span>
             </span>
           </div>
 
@@ -181,7 +173,7 @@
           <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <a href="#fluxo-dados"
               class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-bio-lime text-space-950 font-bold px-7 py-4 rounded-xl text-base hover:bg-[#c9f17a] transition-all shadow-[0_0_30px_rgba(222,255,154,0.3)]">
-              <span>Ver Fluxo de Dados LEO</span>
+              <span>Ver Fluxo Starlink</span>
               <i data-lucide="arrow-down" class="w-5 h-5"></i>
             </a>
 
@@ -189,6 +181,12 @@
               class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-space-850 hover:bg-space-800 text-white font-medium px-7 py-4 rounded-xl text-base border border-white/15 hover:border-bio-lime/50 transition-all">
               <i data-lucide="layers" class="w-5 h-5 text-bio-lime"></i>
               <span>Ver Arquitetura Técnica</span>
+            </a>
+
+            <a href="#contato"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-space-850 hover:bg-space-800 text-white font-medium px-7 py-4 rounded-xl text-base border border-orbital-cyan/30 hover:border-orbital-cyan/60 transition-all">
+              <i data-lucide="calendar-check" class="w-5 h-5 text-orbital-cyan"></i>
+              <span>Solicitar Demonstração</span>
             </a>
           </div>
 
@@ -224,19 +222,42 @@
                 UPLINK</span>
             </div>
 
-            <div class="py-5 space-y-4 font-mono text-xs">
+            <div class="py-5 space-y-3 font-mono text-xs">
               <div class="p-3 rounded-xl bg-space-900/80 border border-bio-lime/20 flex items-center justify-between">
-                <span class="text-gray-300">1. OrbiPen Bio-MEMS</span>
-                <span class="text-bio-lime font-bold">BLE 5.3 Conectado</span>
+                <span class="flex items-center gap-2 text-gray-300">
+                  <i data-lucide="cpu" class="w-3.5 h-3.5 text-bio-lime"></i>
+                  OrbiPen · ESP32 + Bio-MEMS
+                </span>
+                <span class="text-bio-lime font-bold">BLE Pareado</span>
+              </div>
+              <div class="flex justify-center">
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="w-px h-3 bg-orbital-cyan/40"></span>
+                  <i data-lucide="bluetooth" class="w-3 h-3 text-orbital-cyan animate-pulse"></i>
+                  <span class="w-px h-3 bg-orbital-cyan/40"></span>
+                </div>
               </div>
               <div
                 class="p-3 rounded-xl bg-space-900/80 border border-orbital-cyan/20 flex items-center justify-between">
-                <span class="text-gray-300">2. App iOS HealthKit</span>
-                <span class="text-orbital-cyan font-bold">AES-256 Assinado</span>
+                <span class="flex items-center gap-2 text-gray-300">
+                  <i data-lucide="tablet" class="w-3.5 h-3.5 text-orbital-cyan"></i>
+                  App iOS / iPadOS · HealthKit
+                </span>
+                <span class="text-orbital-cyan font-bold">AES-256</span>
+              </div>
+              <div class="flex justify-center">
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="w-px h-3 bg-bio-lime/40"></span>
+                  <i data-lucide="satellite" class="w-3 h-3 text-bio-lime animate-pulse"></i>
+                  <span class="w-px h-3 bg-bio-lime/40"></span>
+                </div>
               </div>
               <div class="p-3 rounded-xl bg-space-900/80 border border-purple-400/20 flex items-center justify-between">
-                <span class="text-gray-300">3. Satélite LEO &amp; OrbiBrain</span>
-                <span class="text-purple-300 font-bold">Inferência &lt; 3min</span>
+                <span class="flex items-center gap-2 text-gray-300">
+                  <i data-lucide="brain-circuit" class="w-3.5 h-3.5 text-purple-400"></i>
+                  Starlink LEO → OrbiBrain
+                </span>
+                <span class="text-purple-300 font-bold">&lt; 3min</span>
               </div>
             </div>
 
@@ -273,7 +294,7 @@
       <div class="animation-controls">
         <button id="toggleFailoverBtn" class="btn-simulation">
           <span class="status-dot"></span>
-          <span class="btn-text">Simular Redes Terrestres Offline (Ativar Failover LEO)</span>
+          <span class="btn-text">Simular Redes Terrestres Offline (Ativar Failover Starlink LEO)</span>
         </button>
         <div id="connectionStatus" class="status-indicator">
           Status Conexão: <strong id="statusLabel" class="status-online">4G / Terrestre Ativa</strong>
@@ -422,7 +443,7 @@
             <div class="flex items-center justify-between">
               <div
                 class="w-14 h-14 rounded-2xl bg-bio-lime/10 border border-bio-lime/30 flex items-center justify-center text-bio-lime shadow-[0_0_20px_rgba(222,255,154,0.2)]">
-                <i data-lucide="activity" class="w-7 h-7"></i>
+                <i data-lucide="cpu" class="w-7 h-7"></i>
               </div>
               <span
                 class="text-xs font-mono text-bio-lime bg-bio-lime/10 px-2.5 py-1 rounded border border-bio-lime/20 uppercase">Pilar
@@ -431,35 +452,39 @@
 
             <div>
               <h3 class="text-2xl font-bold text-white group-hover:text-bio-lime transition-colors">OrbiPen</h3>
-              <p class="text-xs font-mono text-gray-400 mt-0.5">HARDWARE IOT / BIO-MEMS</p>
+              <p class="text-xs font-mono text-gray-400 mt-0.5">HARDWARE IoT MVP — ESP32 / ARDUINO + BIO-MEMS</p>
             </div>
 
             <p class="text-gray-300 text-sm leading-relaxed">
-              Dispositivo portátil de mão com tecnologia microeletromecânica (Bio-MEMS) para triagem molecular e
-              espectrometria óptica minimamente invasiva.
+              Protótipo funcional baseado em microcontrolador <strong class="text-white">ESP32/Arduino</strong> de baixo custo e alta eficiência. Realiza triagem molecular e espectrometria óptica minimamente invasiva, transmitindo os dados via <strong class="text-bio-lime">Bluetooth Low Energy (BLE)</strong> em tempo real para o dispositivo iOS/iPadOS pareado.
             </p>
 
             <div class="space-y-3 pt-2 text-xs font-mono border-t border-white/10">
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
-                    class="w-3.5 h-3.5 text-bio-lime"></i> Microagulha descartável</span>
-                <span class="text-white font-semibold">0.2mm estéril</span>
+                    class="w-3.5 h-3.5 text-bio-lime"></i> Microcontrolador</span>
+                <span class="text-white font-semibold">ESP32 / Arduino Nano 33</span>
               </div>
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
                     class="w-3.5 h-3.5 text-bio-lime"></i> Sensor óptico</span>
-                <span class="text-white font-semibold">400nm - 900nm</span>
+                <span class="text-white font-semibold">400nm – 900nm</span>
               </div>
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
                     class="w-3.5 h-3.5 text-bio-lime"></i> Conectividade</span>
-                <span class="text-white font-semibold">BLE 5.3 + Secure Enclave</span>
+                <span class="text-bio-lime font-semibold">BLE 5.3 Tempo Real</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                    class="w-3.5 h-3.5 text-bio-lime"></i> Microagulha descartável</span>
+                <span class="text-white font-semibold">0.2mm estéril</span>
               </div>
             </div>
           </div>
 
           <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
-            <span class="text-xs text-gray-400">Tempo de coleta: &lt; 15s</span>
+            <span class="text-xs text-gray-400">Coleta: &lt; 15s · Custo acessível de MVP</span>
             <button onclick="openModal('orbipen')"
               class="text-xs font-mono text-bio-lime hover:underline flex items-center gap-1">
               Especificações <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
@@ -474,7 +499,7 @@
             <div class="flex items-center justify-between">
               <div
                 class="w-14 h-14 rounded-2xl bg-orbital-cyan/10 border border-orbital-cyan/30 flex items-center justify-center text-orbital-cyan shadow-[0_0_20px_rgba(56,189,248,0.2)]">
-                <i data-lucide="smartphone" class="w-7 h-7"></i>
+                <i data-lucide="tablet" class="w-7 h-7"></i>
               </div>
               <span
                 class="text-xs font-mono text-orbital-cyan bg-orbital-cyan/10 px-2.5 py-1 rounded border border-orbital-cyan/20 uppercase">Pilar
@@ -483,19 +508,18 @@
 
             <div>
               <h3 class="text-2xl font-bold text-white group-hover:text-orbital-cyan transition-colors">OrbiMed App</h3>
-              <p class="text-xs font-mono text-gray-400 mt-0.5">MOBILE HYBRID-FIRST (SWIFT / IOS)</p>
+              <p class="text-xs font-mono text-gray-400 mt-0.5">NATIVO UNIVERSAL iOS &amp; iPadOS (SWIFT)</p>
             </div>
 
             <p class="text-gray-300 text-sm leading-relaxed">
-              Aplicação de campo em Swift com integração ao Apple HealthKit como hub universal de biomarcadores e
-              roteador inteligente com failover transparente para LEO.
+              Aplicação <strong class="text-white">nativa e universal</strong> para todo ecossistema Apple. No <strong class="text-orbital-cyan">iPad</strong>, oferece interface ampliada ideal para prontuários, teleconferência e uso por agentes de campo. No iPhone, mobilidade total no ponto de atendimento.
             </p>
 
             <div class="space-y-3 pt-2 text-xs font-mono border-t border-white/10">
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
-                    class="w-3.5 h-3.5 text-orbital-cyan"></i> Linguagem &amp; UI</span>
-                <span class="text-white font-semibold">Swift 6 &amp; SwiftUI</span>
+                    class="w-3.5 h-3.5 text-orbital-cyan"></i> Plataformas</span>
+                <span class="text-white font-semibold">iPhone &amp; iPad (Universal)</span>
               </div>
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
@@ -505,17 +529,12 @@
               <div class="flex items-center justify-between text-gray-300">
                 <span class="flex items-center gap-2"><i data-lucide="check-circle"
                     class="w-3.5 h-3.5 text-orbital-cyan"></i> Failover Dinâmico</span>
-                <span class="text-white font-semibold">Wi-Fi &gt; 4G &gt; LEO Sat</span>
+                <span class="text-orbital-cyan font-semibold">Wi-Fi &gt; 4G &gt; Starlink</span>
               </div>
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
-            <a href="mobile-prototype.html" target="_blank"
-              class="text-xs font-mono text-bio-lime hover:underline flex items-center gap-1 font-semibold"
-              aria-label="Abrir Simulador Interativo do iPhone 15 Pro">
-              <i data-lucide="play" class="w-3 h-3 text-bio-lime"></i> Testar no iPhone 15 Pro
-            </a>
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-end">
             <button onclick="openModal('app')"
               class="text-xs font-mono text-orbital-cyan hover:underline flex items-center gap-1">
               Arquitetura App <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
@@ -640,33 +659,32 @@
 
           <p class="text-xs text-gray-400 my-4">
             Componentes executados no ponto de atendimento clínico isolado, operados por agentes de saúde ou equipes de
-            emergência.
+            emergência, com comunicação BLE em tempo real entre dispositivos.
           </p>
 
           <div class="space-y-3 font-mono text-xs">
             <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
               <div class="text-white font-semibold flex items-center justify-between">
-                <span>OrbiPen Bio-MEMS</span>
-                <span class="text-[10px] text-bio-lime">Firmware C/FreeRTOS</span>
+                <span>OrbiPen · ESP32 + Bio-MEMS</span>
+                <span class="text-[10px] text-bio-lime">Firmware Arduino C</span>
               </div>
-              <p class="text-gray-400 text-[11px]">Coleta óptica e eletroquímica de amostras capilares sem dor.</p>
+              <p class="text-gray-400 text-[11px]">Microcontrolador de baixo custo para coleta óptica e eletroquímica sem dor. BLE 5.3 integrado.</p>
             </div>
 
-            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
-              <div class="text-white font-semibold flex items-center justify-between">
-                <span>BLE 5.3 Secure Protocol</span>
-                <span class="text-[10px] text-bio-lime">Enclave Criptográfico</span>
+            <div class="p-3 rounded-lg bg-space-900/90 border border-bio-lime/10 space-y-1">
+              <div class="text-bio-lime font-semibold flex items-center justify-between text-[10px] tracking-wider">
+                <span class="flex items-center gap-1.5"><i data-lucide="bluetooth" class="w-3 h-3"></i> BLE 5.3 SECURE CHANNEL</span>
+                <span class="text-gray-500">ECDSA Auth</span>
               </div>
-              <p class="text-gray-400 text-[11px]">Canal autenticado por chave pública de hardware ECDSA.</p>
+              <p class="text-gray-400 text-[11px]">Canal autenticado por chave pública de hardware, par BLE entre OrbiPen e dispositivo iOS/iPadOS.</p>
             </div>
 
-            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+            <div class="p-3 rounded-lg bg-space-900/90 border border-orbital-cyan/10 space-y-1">
               <div class="text-white font-semibold flex items-center justify-between">
-                <span>OrbiMed iOS Host Client</span>
-                <span class="text-[10px] text-orbital-cyan">Swift 6 / CoreData</span>
+                <span>OrbiMed App · iPhone &amp; iPad</span>
+                <span class="text-[10px] text-orbital-cyan">Swift 6 / HealthKit</span>
               </div>
-              <p class="text-gray-400 text-[11px]">Armazenamento offline SQLite criptografado (AES-256) e UI responsiva.
-              </p>
+              <p class="text-gray-400 text-[11px]">Universal nativo iOS/iPadOS. iPad com interface ampliada para prontuário e teleconferência de campo.</p>
             </div>
           </div>
         </div>
@@ -683,12 +701,11 @@
               <h3 class="text-lg font-bold text-white">2. Orbital Mesh</h3>
             </div>
             <span
-              class="text-[10px] font-mono text-orbital-cyan bg-orbital-cyan/10 px-2 py-0.5 rounded border border-orbital-cyan/20">SATÉLITES</span>
+              class="text-[10px] font-mono text-orbital-cyan bg-orbital-cyan/10 px-2 py-0.5 rounded border border-orbital-cyan/20">STARLINK</span>
           </div>
 
           <p class="text-xs text-gray-400 my-4">
-            Infraestrutura de transporte resiliente que garante continuidade de envio de dados sem depender de
-            operadoras terrestres.
+            Fluxo: <span class="text-bio-lime font-semibold">BLE</span> → <span class="text-orbital-cyan font-semibold">iPad</span> → <span class="text-green-400 font-semibold">4G/5G</span> → se indisponível: <span class="text-orbital-cyan font-semibold">Starlink LEO</span>. Failover automático e transparente.
           </p>
 
           <div class="space-y-3 font-mono text-xs">
@@ -697,8 +714,7 @@
                 <span>Dynamic Failover Gateway</span>
                 <span class="text-[10px] text-orbital-cyan">Multi-Bearer Engine</span>
               </div>
-              <p class="text-gray-400 text-[11px]">Alternância instantânea: Wi-Fi -&gt; 4G/LTE -&gt; LEO Satellite
-                transceptor.</p>
+              <p class="text-gray-400 text-[11px]">Alternância automática: Wi-Fi → 4G/LTE → <strong class="text-orbital-cyan">Starlink LEO</strong> quando sem cobertura terrestre.</p>
             </div>
 
             <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
@@ -709,13 +725,12 @@
               <p class="text-gray-400 text-[11px]">Compressão de dados biométricos em pacotes ultra-leves &lt; 4 KB.</p>
             </div>
 
-            <div class="p-3 rounded-lg bg-space-900/90 border border-white/5 space-y-1">
+            <div class="p-3 rounded-lg bg-space-900/90 border border-orbital-cyan/20 space-y-1">
               <div class="text-white font-semibold flex items-center justify-between">
-                <span>LEO Constellation Relay</span>
-                <span class="text-[10px] text-orbital-cyan">Starlink / Iridium</span>
+                <span>Starlink LEO Constellation</span>
+                <span class="text-[10px] text-orbital-cyan">550 km · Ku/Ka-Band</span>
               </div>
-              <p class="text-gray-400 text-[11px]">Órbita baixa (550 km) com tempo de viagem de sinal reduzido para &lt;
-                60ms.</p>
+              <p class="text-gray-400 text-[11px]">Cobertura global. Latência &lt; 60ms. Ativado automaticamente quando 4G/5G é indisponível.</p>
             </div>
           </div>
         </div>
@@ -770,6 +785,67 @@
 
       </div>
 
+    </div>
+  </section>
+
+  <!-- PROPOSTA DE VALOR MVP -->
+  <section class="py-20 relative border-t border-white/5 bg-space-900/30">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-12 space-y-3">
+          <span class="text-xs font-mono text-bio-lime uppercase tracking-widest bg-bio-lime/10 px-3 py-1 rounded-full border border-bio-lime/20">
+            Viabilidade Econômica do MVP
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Tecnologia de Diagnóstico Acessível,<br>
+            <span class="text-bio-lime">Alimentada por IA de Borda e Conectividade Orbital</span>
+          </h2>
+          <p class="text-gray-300 text-base max-w-2xl mx-auto">
+            Hardware de prateleira + software proprietário = custo de entrada radical, sem comprometer a precisão clínica.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="glass-card rounded-2xl p-6 border-bio-lime/20 text-center hover:border-bio-lime/40 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-bio-lime/10 border border-bio-lime/30 flex items-center justify-center text-bio-lime mx-auto mb-4">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-white font-bold text-lg">Hardware Acessível</h3>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Protótipo baseado em <strong class="text-bio-lime">ESP32/Arduino</strong> — microcontroladores de prateleira com BLE integrado. Custo de componentes drasticamente reduzido versus ASICs proprietários.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 border-orbital-cyan/20 text-center hover:border-orbital-cyan/40 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-orbital-cyan/10 border border-orbital-cyan/30 flex items-center justify-center text-orbital-cyan mx-auto mb-4">
+              <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-white font-bold text-lg">IA de Borda</h3>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Inferência local via <strong class="text-orbital-cyan">Apple CoreML / Neural Engine</strong> no iPad/iPhone. Laudo sem depender de nuvem — funciona completamente offline em áreas remotas.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 border-purple-500/20 text-center hover:border-purple-400/40 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mx-auto mb-4">
+              <i data-lucide="satellite" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-white font-bold text-lg">Conectividade Orbital</h3>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Failover automático via <strong class="text-purple-300">Starlink LEO</strong> garante que nenhum dado clínico se perca — mesmo a centenas de quilômetros de qualquer torre de celular.</p>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#arquitetura"
+            class="inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-bold px-7 py-3.5 rounded-xl text-sm hover:bg-[#c9f17a] transition-all shadow-[0_0_25px_rgba(222,255,154,0.25)]">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>Ver Arquitetura Técnica</span>
+          </a>
+          <a href="#contato"
+            class="inline-flex items-center space-x-2 bg-space-850 text-white font-medium px-7 py-3.5 rounded-xl text-sm border border-orbital-cyan/30 hover:border-orbital-cyan/60 transition-all">
+            <i data-lucide="calendar-check" class="w-4 h-4 text-orbital-cyan"></i>
+            <span>Solicitar Demonstração</span>
+          </a>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -880,8 +956,7 @@
           </h2>
 
           <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Solicite o Pitch Deck executivo completo, o Data Room com resultados de bancada e o plano piloto diretamente
-            com a diretoria executiva da OrbiMed.
+            Entre em contato diretamente com a diretoria executiva da OrbiMed para saber mais sobre a plataforma e oportunidades de investimento.
           </p>
 
           <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
