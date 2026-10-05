@@ -60,9 +60,10 @@
 
   <!-- Navegação Principal -->
   <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
-    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-      <!-- Logo OrbiMed -->
-      <a href="#" class="flex items-center space-x-3 group">
+    <div class="container mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      
+      <!-- Coluna 1: Logo OrbiMed -->
+      <a href="#" class="flex items-center space-x-3 group flex-shrink-0">
         <div
           class="w-10 h-10 rounded-xl bg-space-850 border border-bio-lime/30 flex items-center justify-center relative overflow-hidden group-hover:border-bio-lime transition-all shadow-[0_0_15px_rgba(222,255,154,0.15)]">
           <div class="absolute inset-0 bg-gradient-to-br from-bio-lime/10 to-transparent"></div>
@@ -78,12 +79,8 @@
         </div>
       </a>
 
-      <!-- Links de Navegação Desktop -->
-      <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-gray-300">
-        <a href="#fluxo-dados" class="hover:text-bio-lime transition-colors flex items-center gap-1.5 text-bio-lime">
-          <span class="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse"></span>
-          Fluxo de Dados
-        </a>
+      <!-- Coluna 2: Links de Navegação Desktop (Centralizados) -->
+      <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium text-gray-300">
         <a href="#solucao" class="hover:text-bio-lime transition-colors">O Problema</a>
         <a href="#ecossistema" class="hover:text-bio-lime transition-colors">Ecossistema</a>
         <a href="#jornada-campo" class="hover:text-bio-lime transition-colors">Jornada no iPad</a>
@@ -91,18 +88,21 @@
         <a href="#impacto" class="hover:text-bio-lime transition-colors">ESG &amp; Negócios</a>
       </nav>
 
-      <!-- Ações do Header -->
-      <a href="#fluxo-dados"
-        class="hidden sm:inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2 rounded-lg transition-all">
-        <i data-lucide="activity" class="w-4 h-4"></i>
-        <span>Live Canvas</span>
-      </a>
-      <a href="#contato"
-        class="inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-semibold px-4 py-2 rounded-lg text-sm hover:bg-[#c9f17a] transition-all shadow-[0_0_20px_rgba(222,255,154,0.25)]">
-        <span>Relatório Executivo</span>
-        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-      </a>
-    </div>
+      <!-- Coluna 3: Ações do Header (Agrupadas à Direita) -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <a href="#fluxo-dados"
+          class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2.5 rounded-lg transition-all">
+          <span class="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse"></span>
+          <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+          <span>Live Canvas</span>
+        </a>
+        <a href="#contato"
+          class="inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-bold px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-[#c9f17a] transition-all shadow-[0_0_20px_rgba(222,255,154,0.25)]">
+          <span>Relatório Executivo</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
     </div>
   </header>
 

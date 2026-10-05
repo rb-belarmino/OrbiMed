@@ -362,27 +362,28 @@ const modalContent = {
   orbipen: `
     <div class="flex items-center space-x-3 text-bio-lime mb-2">
       <i data-lucide="cpu" class="w-6 h-6"></i>
-      <h3 class="text-xl font-bold text-white">Especificações: OrbiPen MVP</h3>
+      <h3 class="text-xl font-bold text-white">Especificações: OrbiPen (MVP &amp; Roadmap)</h3>
     </div>
-    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">HARDWARE IoT — ESP32 / ARDUINO + BIO-MEMS + BLE 5.3</p>
+    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">HARDWARE COLETOR · SOFTWARE-FIRST · ESP32 + SENSORES ANVISA</p>
     <div class="space-y-3 text-xs text-gray-300">
-      <p>A <strong>OrbiPen</strong> utiliza microcontrolador <strong class="text-bio-lime">ESP32 / Arduino Nano 33 BLE</strong> de baixo custo como base do MVP. Realiza triagem molecular e espectrometria óptica minimamente invasiva, transmitindo via <strong class="text-bio-lime">BLE 5.3</strong> em tempo real ao dispositivo iOS/iPadOS pareado — sem necessidade de transporte de amostras ou refrigeração.</p>
+      <p><strong>MVP Pragmático (Hoje):</strong> Microcontrolador <strong class="text-bio-lime">ESP32 / Arduino (R$ 40 a R$ 60)</strong> atuando como servidor GATT, integrando sensores de saúde comerciais já certificados pela <strong class="text-white">ANVISA</strong> (oxímetros, glicosímetros BLE) via leitura de bytes brutos. Custo total &lt; R$ 150.</p>
+      <p><strong>Roadmap Futuro (Fase 2):</strong> Miniaturização em dispositivo proprietário com microagulha retrátil de 0.2mm (Bio-MEMS) para biópsia líquida rápida e espectrometria óptica infravermelha (400nm – 900nm).</p>
       <div class="grid grid-cols-2 gap-3 pt-2 font-mono">
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Microcontrolador</span>
-          <span class="text-white font-bold">ESP32 / Arduino Nano 33</span>
+          <span class="text-gray-500 block">Microcontrolador MVP</span>
+          <span class="text-white font-bold">ESP32 GATT Server</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Conectividade</span>
-          <span class="text-bio-lime font-bold">BLE 5.3 + ECDSA</span>
+          <span class="text-gray-500 block">Comunicação</span>
+          <span class="text-bio-lime font-bold">BLE 5.x GATT Standard</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Espectro óptico</span>
-          <span class="text-white font-bold">400nm – 900nm</span>
+          <span class="text-gray-500 block">Sensores MVP</span>
+          <span class="text-white font-bold">Certificados ANVISA</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Microagulha</span>
-          <span class="text-white font-bold">0.2mm estéril</span>
+          <span class="text-gray-500 block">Visão Longo Prazo</span>
+          <span class="text-orbital-cyan font-bold">Bio-MEMS 0.2mm</span>
         </div>
       </div>
     </div>
@@ -390,27 +391,28 @@ const modalContent = {
   app: `
     <div class="flex items-center space-x-3 text-orbital-cyan mb-2">
       <i data-lucide="tablet" class="w-6 h-6"></i>
-      <h3 class="text-xl font-bold text-white">Arquitetura: OrbiMed App</h3>
+      <h3 class="text-xl font-bold text-white">Estação de Campo: OrbiMed no iPad</h3>
     </div>
-    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">NATIVO UNIVERSAL iOS &amp; iPadOS · SWIFT 6 · APPLE HEALTHKIT</p>
+    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">SWIFT 6 · iPAD &amp; iPADOS PRIORITÁRIO · PRIVACY-FIRST</p>
     <div class="space-y-3 text-xs text-gray-300">
-      <p>Aplicativo <strong class="text-orbital-cyan">nativo e universal</strong> para iPhone e iPad. No <strong>iPad</strong>, oferece interface ampliada ideal para prontuários, teleconferência e uso por agentes de campo. Opera 100% offline-first, assinando o payload clínico localmente no Secure Enclave e comutando de canal automaticamente via failover <strong class="text-orbital-cyan">Starlink LEO</strong>.</p>
+      <p>O <strong>iPad</strong> foi eleito o hardware prioritário de campo: menor custo de aquisição e tela ampla para visualização de gráficos espectrais, mapas de calor de risco e prontuários ampliados pelo agente comunitário de saúde.</p>
+      <p>Opera de forma <strong>100% offline-first</strong>: validações locais no Apple Neural Engine (CoreML), criptografia via Secure Enclave e roteamento inteligente via antena Starlink (LEO) quando sem 4G.</p>
       <div class="grid grid-cols-2 gap-3 pt-2 font-mono">
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Plataformas</span>
-          <span class="text-white font-bold">iPhone &amp; iPad (Universal)</span>
+          <span class="text-gray-500 block">Dispositivo Primário</span>
+          <span class="text-white font-bold">iPad / iPadOS (Swift 6)</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Hub Biométrico</span>
-          <span class="text-white font-bold">Apple HealthKit</span>
+          <span class="text-gray-500 block">Segurança</span>
+          <span class="text-white font-bold">Secure Enclave + HealthKit</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">IA de Borda</span>
-          <span class="text-white font-bold">CoreML Neural Engine</span>
+          <span class="text-gray-500 block">Edge Processing</span>
+          <span class="text-white font-bold">CoreML Offline</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Failover</span>
-          <span class="text-orbital-cyan font-bold">Wi-Fi &gt; 4G &gt; Starlink</span>
+          <span class="text-gray-500 block">Failover Orbital</span>
+          <span class="text-orbital-cyan font-bold">Antena Starlink (LEO)</span>
         </div>
       </div>
     </div>
@@ -418,19 +420,28 @@ const modalContent = {
   brain: `
     <div class="flex items-center space-x-3 text-purple-400 mb-2">
       <i data-lucide="brain" class="w-6 h-6"></i>
-      <h3 class="text-xl font-bold text-white">Motor de Inferência: OrbiBrain</h3>
+      <h3 class="text-xl font-bold text-white">Motor Preditivo: OrbiBrain AI</h3>
     </div>
-    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">CLOUD PREDICTIVE AI ENGINE</p>
+    <p class="text-xs font-mono text-gray-400 pb-3 border-b border-white/10">PYTHON (FASTAPI) · POSTGRESQL · S3 STORAGE · RISK SCORE &lt; 3 MIN</p>
     <div class="space-y-3 text-xs text-gray-300">
-      <p>Microsserviços em Go gerenciam ingestão concorrente massiva enquanto redes neurais em PyTorch analisam dados moleculares e predizem scores de risco.</p>
+      <p>O <strong>OrbiBrain</strong> executa pipelines de inteligência artificial em <strong>Python (FastAPI)</strong>. Recebe o payload clínico do iPad, cruza com bases de bioinformática e calcula o <strong>Risk Score</strong> (Baixo, Moderado ou Alto Risco) em menos de 3 minutos.</p>
+      <p><strong>Persistência Dupla:</strong> PostgreSQL para dados estruturados/prontuários e Object Storage compatível com S3 para arquivos brutos e logs de espectrometria.</p>
       <div class="grid grid-cols-2 gap-3 pt-2 font-mono">
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Inferência</span>
-          <span class="text-white font-bold">&lt; 850ms em GPU</span>
+          <span class="text-gray-500 block">API Framework</span>
+          <span class="text-white font-bold">Python / FastAPI</span>
         </div>
         <div class="p-2.5 rounded bg-space-900 border border-white/5">
-          <span class="text-gray-500 block">Padrão</span>
-          <span class="text-white font-bold">FHIR R4 / DICOM</span>
+          <span class="text-gray-500 block">Persistência</span>
+          <span class="text-white font-bold">PostgreSQL + S3</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">Tempo de Resposta</span>
+          <span class="text-bio-lime font-bold">&lt; 3 minutos</span>
+        </div>
+        <div class="p-2.5 rounded bg-space-900 border border-white/5">
+          <span class="text-gray-500 block">Saída Clínica</span>
+          <span class="text-purple-300 font-bold">Laudo PDF / Teleconsulta</span>
         </div>
       </div>
     </div>

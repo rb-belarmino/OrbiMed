@@ -22,53 +22,66 @@
 
 ## 📌 Sumário Executivo
 
-Mais de **65% do território geográfico isolado** no Brasil (comunidades ribeirinhas, terras indígenas, postos de fronteira e minerações remotas) carece de infraestrutura de laboratórios e redes 3G/4G/5G confiáveis. Os exames convencionais demandam de **7 a 30 dias** para retorno e frequentemente sofrem com a quebra da cadeia de frio no transporte biológico.
+Mais de **65% do território geográfico isolado** no Brasil (comunidades ribeirinhas, terras indígenas, postos de fronteira e minerações remotas) carece de infraestrutura de laboratórios e redes 3G/4G/5G confiáveis. Os exames convencionais e laudos oncológicos demandam de **30 a 90 dias** para retorno e frequentemente sofrem com a quebra da cadeia de frio no transporte biológico precário.
 
-A **OrbiMed** soluciona esse gargalo crítico através de uma plataforma _Point-of-Care_ de alta resiliência:
+A **OrbiMed** soluciona esse gargalo crítico através de uma plataforma _Point-of-Care Software-First_ de alta viabilidade e resiliência:
 
-1. **Coleta Não-Invasiva**: Microagulha estéril de 0.2mm e espectrofotometria óptica seca (400nm–900nm), dispensando refrigeração.
-2. **Edge AI Autônomo**: Inferência em tempo de execução via **Apple Neural Engine (ANE)** e modelos neurais **Swift CoreML** diretamente no dispositivo móvel.
-3. **Failover Espacial (LEO)**: Envio via rede celular/fibra convencional; na ausência de sinal, comuta automaticamente para o enlace de satélites LEO (550 km), comprimindo e assinando o payload com criptografia militar.
+1. **Hardware Coletor Acessível (MVP)**: Microcontrolador **ESP32 (R$ 40–60)** atuando como servidor GATT, integrando sensores de saúde de prateleira certificados pela **ANVISA** via **BLE 5.x**. No roadmap de longo prazo, miniaturização com microagulha 0.2mm Bio-MEMS.
+2. **Estação de Campo no iPad**: Interface prioritária em **iPadOS (Swift 6)**, otimizada para agentes de campo com gráficos espectrais, prontuários ampliados, segurança via **Secure Enclave/HealthKit** e inferência local offline no **Apple Neural Engine**.
+3. **Failover Espacial Starlink (LEO)**: Envio via rede 4G/5G quando disponível; na ausência de sinal terrestre, comutação automática para a antena **Starlink (satélites LEO a 550 km)** com payload ultraleve e latência de 20-40ms.
+4. **OrbiBrain em Nuvem (Python / FastAPI)**: Cálculo automatizado de **Risk Score** em menos de 3 minutos, com persistência dupla em **PostgreSQL** e **Object Storage S3**.
 
 ---
 
 ## 🏗️ Os 3 Pilares do Ecossistema
 
-```
- ┌─────────────────┐       BLE 5.3        ┌─────────────────────┐
- │  OrbiPen        │ ───────────────────> │  OrbiMed Mobile App │
- │  (IoT Bio-MEMS) │                      │  (Swift 6 / CoreML) │
- └─────────────────┘                      └──────────┬──────────┘
-                                                     │
-                             ┌───────────────────────┴───────────────────────┐
-                             │                                               │
-                      [Rede Terrestre]                                [Sem Cobertura]
-                             │                                               │
-                             ▼                                               ▼
-                   ┌───────────────────┐                         ┌───────────────────────┐
-                   │ 4G / 5G / Fibra   │                         │ Satélite LEO (550 km) │
-                   └─────────┬─────────┘                         └───────────┬───────────┘
-                             │                                               │
-                             └───────────────────────┬───────────────────────┘
-                                                     │ Uplink Criptografado
-                                                     ▼
-                                         ┌───────────────────────┐
-                                         │   Cloud API Gateway   │
-                                         │   (Golang / FastAPI)  │
-                                         └───────────┬───────────┘
-                                                     │
-                                                     ▼
-                                         ┌───────────────────────┐
-                                         │       OrbiBrain       │
-                                         │  (AI Engine / PyTorch)│
-                                         └───────────────────────┘
+```text
+┌──────────────────────────┐         BLE 5.x         ┌──────────────────────────┐
+│  OrbiPen (IoT Provisório)│ ──────────────────────► │  iPad / iOS (OrbiMed App)│
+│  - ESP32 / Arduino       │     GATT Standard       │  - Swift 6 / SwiftUI     │
+│  - Sensor de Prateleira  │                         │  - Edge Processing       │
+└──────────────────────────┘                         └────────────┬─────────────┘
+                                                                  │
+                                            ┌─────────────────────┴─────────────────────┐
+                                            │ Roteamento Inteligente (Hybrid-First)     │
+                                            └─────────────────────┬─────────────────────┘
+                                                                  │
+                           ┌──────────────────────────────────────┴──────────────────────────────────────┐
+                           ▼                                                                             ▼
+                [Canal Primário Terrestre]                                                    [Canal Orbital Failover]
+                Conexão Wi-Fi / 4G local                                                      Wi-Fi via Antena Starlink (LEO)
+                (Payload JSON síncrono)                                                       (Payload JSON ultracompacto)
+                           │                                                                             │
+                           └──────────────────────────────┬──────────────────────────────────────────────┘
+                                                          ▼
+                                            ┌───────────────────────────┐
+                                            │  Cloud Backend (FastAPI)  │
+                                            │  - PostgreSQL + S3 Storage│
+                                            └─────────────┬─────────────┘
+                                                          ▼
+                                            ┌───────────────────────────┐
+                                            │  OrbiBrain AI (Python)    │
+                                            │  - Processamento & Score  │
+                                            │  - Retorno em < 3 minutos │
+                                            └───────────────────────────┘
 ```
 
-| Componente                | Função                                                                      | Tecnologias Principais                                                        |
-| :------------------------ | :-------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-| **01. OrbiPen**           | Dispositivo de mão portátil para leitura molecular e fotônica in loco.      | Bio-MEMS, Espectrometria (400-900nm), Microagulha 0.2mm, BLE 5.3, ECDSA.      |
-| **02. OrbiMed App**       | Hub móvel híbrido, inferência CoreML nativa e roteamento de conectividade.  | Swift 6, SwiftUI, Apple HealthKit, Swift CoreML, SQLite/SwiftData encriptado. |
-| **03. OrbiBrain & Cloud** | Motor preditivo em nuvem, ingestão em massa e emissão de laudos FHIR/DICOM. | Golang Microservices, Python / PyTorch, SHAP Explainability, FHIR R4.         |
+| Componente | Função | Tecnologias Principais |
+| :--- | :--- | :--- |
+| **01. OrbiPen (MVP)** | Coleta de biomarcadores via hardware de prateleira de baixo custo (&lt; R$ 150). | ESP32 GATT Server, Sensores ANVISA de prateleira, BLE 5.x, Firmware C / Arduino. Roadmap: Bio-MEMS 0.2mm. |
+| **02. OrbiMed iPad Station** | Estação de campo do agente: prontuário, mapa de risco, offline-first e roteamento. | iPad / iPadOS, Swift 6, SwiftUI, Apple HealthKit, Secure Enclave, CoreML Offline. |
+| **03. Conectividade Híbrida** | Failover transparente de telecomunicações para áreas sem cobertura celular. | Wi-Fi / 4G Primário, Failover via Antena Starlink (LEO 550 km), JSON/MQTT-SN ultraleve. |
+| **04. OrbiBrain & Cloud** | Motor preditivo em nuvem, ingestão assíncrona e emissão de laudo estruturado. | Python / FastAPI, PostgreSQL, S3 Object Storage, PyTorch / SHAP, FHIR R4. |
+
+---
+
+## 🧭 Fluxo de Atendimento do Usuário (5 Etapas no iPad)
+
+1. **Dashboard:** O agente comunitário de saúde abre o app no iPad e visualiza o pareamento automático com a OrbiPen via BLE e o status da conexão (4G ou Starlink LEO).
+2. **Identificação:** Cadastro rápido do paciente (nome, idade, queixas e sintomas clínicos prioritários).
+3. **Execução:** O sensor encosta no paciente; o iPad faz a leitura em tempo real e armazena os dados brutos na memória local segura (Offline-First).
+4. **Comutação de Rede:** O aplicativo detecta a ausência de sinal celular e despacha o pacote binário/JSON ultracompacto via antena Starlink da base comunitária.
+5. **Conduta Clínica:** O OrbiBrain processa o risco e a tela do iPad exibe o laudo com o **Risk Score** em menos de 3 minutos (Baixo, Moderado ou Alto Risco), permitindo gerar laudo em PDF, notificar o SUS ou iniciar teleconsulta imediata.
 
 ---
 
