@@ -120,10 +120,11 @@ O projeto foi totalmente refatorado com separação estrita de responsabilidades
 
 ---
 
-## 📊 Entregáveis Executivos
+## 📊 Recursos da Plataforma
 
 - **Painel & Canvas em Tempo Real**: [Visualizar Data Flow Canvas](index.html#fluxo-dados)
-- **Contato & Deck Técnico**: Acessível via [invest@orbimed.tech](mailto:invest@orbimed.tech).
+- **Arquitetura Técnica (C4 Model)**: [Explorar Arquitetura de Engenharia](index.html#arquitetura)
+- **Jornada de Campo no iPad**: [Ver Fluxo Clínico de 5 Etapas](index.html#jornada-campo)
 
 ---
 
