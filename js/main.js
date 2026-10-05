@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 1,
       label: 'OrbiPen',
-      sub: 'ESP32 + Bio-MEMS',
+      sub: 'ESP32 / BLE GATT',
       x: 0.1,
       y: 0.58,
       icon: '🖊️'
     },
     {
       id: 2,
-      label: 'iPad/iOS',
-      sub: 'Swift + HealthKit',
+      label: 'iPad Station',
+      sub: 'Swift 6 / Edge',
       x: 0.3,
       y: 0.58,
       icon: '📱'
@@ -75,16 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 4,
-      label: 'API Gateway',
-      sub: 'Golang Cloud',
+      label: 'FastAPI Cloud',
+      sub: 'Python Backend',
       x: 0.7,
       y: 0.58,
       icon: '⚡'
     },
     {
       id: 5,
-      label: 'OrbiBrain',
-      sub: 'AI Engine (Python)',
+      label: 'OrbiBrain AI',
+      sub: 'Score < 3min',
       x: 0.9,
       y: 0.58,
       icon: '🧠'
