@@ -13,11 +13,21 @@ if (window.lucide) {
   lucide.createIcons()
 }
 
+// Gerador pseudoaleatório criptograficamente seguro (conformidade OWASP / Sonar javascript:S2245)
+function getSecureRandom() {
+  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
+    const array = new Uint32Array(1)
+    window.crypto.getRandomValues(array)
+    return array[0] / (0xffffffff + 1)
+  }
+  return 0.5
+}
+
 // Latência dinâmica simulada na barra de telemetria
 setInterval(() => {
   const latElement = document.getElementById('telemetryLatency')
   if (latElement) {
-    const simulated = Math.floor(38 + Math.random() * 12)
+    const simulated = Math.floor(38 + getSecureRandom() * 12)
     latElement.textContent = `${simulated}ms`
   }
 }, 3000)
@@ -95,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let particles = []
   for (let i = 0; i < 14; i++) {
     particles.push({
-      progress: Math.random(),
-      speed: 0.0035 + Math.random() * 0.003
+      progress: getSecureRandom(),
+      speed: 0.0035 + getSecureRandom() * 0.003
     })
   }
 
@@ -289,10 +299,10 @@ if (starsCanvas) {
 
   for (let i = 0; i < 60; i++) {
     stars.push({
-      x: Math.random() * sW,
-      y: Math.random() * sH,
-      r: Math.random() * 1.5 + 0.5,
-      alpha: Math.random()
+      x: getSecureRandom() * sW,
+      y: getSecureRandom() * sH,
+      r: getSecureRandom() * 1.5 + 0.5,
+      alpha: getSecureRandom()
     })
   }
 
