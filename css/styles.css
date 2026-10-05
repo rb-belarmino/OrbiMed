@@ -212,3 +212,37 @@
 .mvp-card-enter {
   animation: fade-in-up 0.55s ease both;
 }
+
+/* Responsividade Mobile & Tablet */
+@media (max-width: 640px) {
+  .canvas-container {
+    margin: 24px 0 0;
+    border-radius: 16px;
+  }
+
+  #orbimedFlowCanvas {
+    height: 330px;
+  }
+
+  .animation-controls {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-simulation {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .status-indicator {
+    width: 100%;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+}
+

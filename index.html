@@ -41,23 +41,23 @@
 
   <!-- Barra de Notificação de Status de Telemetria -->
   <div
-    class="relative z-50 bg-space-900/90 border-b border-white/5 py-1.5 px-4 text-xs font-mono text-gray-400 flex items-center justify-between">
-    <div class="container mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <span class="inline-flex items-center space-x-1.5 text-bio-lime">
+    class="relative z-50 bg-space-900/90 border-b border-white/5 py-1.5 px-3 sm:px-4 text-[11px] sm:text-xs font-mono text-gray-400">
+    <div class="container mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center space-x-2 sm:space-x-3 overflow-hidden text-ellipsis whitespace-nowrap">
+        <span class="inline-flex items-center space-x-1.5 text-bio-lime flex-shrink-0">
           <span class="w-2 h-2 rounded-full bg-bio-lime animate-ping"></span>
           <span class="w-2 h-2 rounded-full bg-bio-lime -ml-3.5"></span>
-          <span class="font-semibold tracking-wider">ORBITAL LINK: ACTIVE</span>
+          <span class="font-semibold tracking-wider text-[10px] sm:text-xs">ORBITAL LINK: ACTIVE</span>
         </span>
-        <span class="text-gray-600">|</span>
-        <span class="hidden sm:inline text-gray-400">LEO Constellation: 550km Ku/Ka-Band</span>
         <span class="text-gray-600 hidden sm:inline">|</span>
+        <span class="hidden sm:inline text-gray-400">LEO Constellation: 550km Ku/Ka-Band</span>
+        <span class="text-gray-600 hidden md:inline">|</span>
         <span class="hidden md:inline text-orbital-cyan">AES-256 Quantum-Resistant Encrypted</span>
       </div>
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
         <span class="text-gray-400">Latência: <span id="telemetryLatency"
             class="text-white font-semibold">42ms</span></span>
-        <span class="bg-space-800 px-2 py-0.5 rounded text-[10px] text-bio-lime border border-bio-lime/20">HEALTHKIT
+        <span class="hidden sm:inline-block bg-space-800 px-2 py-0.5 rounded text-[10px] text-bio-lime border border-bio-lime/20">HEALTHKIT
           READY</span>
       </div>
     </div>
@@ -65,22 +65,22 @@
 
   <!-- Navegação Principal -->
   <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
-    <div class="container mx-auto px-6 h-20 flex items-center justify-between gap-6">
+    <div class="container mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-6">
       
       <!-- Coluna 1: Logo OrbiMed -->
-      <a href="#" class="flex items-center space-x-3 group flex-shrink-0">
+      <a href="#" class="flex items-center space-x-2.5 sm:space-x-3 group flex-shrink-0">
         <div
-          class="w-10 h-10 rounded-xl bg-space-850 border border-bio-lime/30 flex items-center justify-center relative overflow-hidden group-hover:border-bio-lime transition-all shadow-[0_0_15px_rgba(222,255,154,0.15)]">
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-space-850 border border-bio-lime/30 flex items-center justify-center relative overflow-hidden group-hover:border-bio-lime transition-all shadow-[0_0_15px_rgba(222,255,154,0.15)]">
           <div class="absolute inset-0 bg-gradient-to-br from-bio-lime/10 to-transparent"></div>
-          <i data-lucide="satellite" class="w-5 h-5 text-bio-lime transition-transform group-hover:rotate-12"></i>
+          <i data-lucide="satellite" class="w-4 h-4 sm:w-5 sm:h-5 text-bio-lime transition-transform group-hover:rotate-12"></i>
         </div>
         <div class="flex flex-col">
-          <div class="flex items-center space-x-1.5">
-            <span class="text-xl font-bold tracking-tight text-white">Orbi<span class="text-bio-lime">Med</span></span>
+          <div class="flex items-center space-x-1 sm:space-x-1.5">
+            <span class="text-lg sm:text-xl font-bold tracking-tight text-white">Orbi<span class="text-bio-lime">Med</span></span>
             <span
-              class="text-[9px] font-mono tracking-widest bg-bio-lime/10 text-bio-lime px-1.5 py-0.5 rounded border border-bio-lime/20 uppercase">SpaceTech</span>
+              class="hidden sm:inline-block text-[9px] font-mono tracking-widest bg-bio-lime/10 text-bio-lime px-1.5 py-0.5 rounded border border-bio-lime/20 uppercase">SpaceTech</span>
           </div>
-          <span class="text-[10px] text-gray-400 font-mono tracking-wider">PREDICTIVE HEALTHCARE</span>
+          <span class="text-[9px] sm:text-[10px] text-gray-400 font-mono tracking-wider">PREDICTIVE HEALTHCARE</span>
         </div>
       </a>
 
@@ -94,20 +94,66 @@
       </nav>
 
       <!-- Coluna 3: Ações do Header (Agrupadas à Direita) -->
-      <div class="flex items-center space-x-3 flex-shrink-0">
+      <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
         <a href="#fluxo-dados"
-          class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2.5 rounded-lg transition-all">
+          class="hidden md:inline-flex items-center space-x-1.5 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 hover:bg-bio-lime/20 border border-bio-lime/30 px-3.5 py-2.5 rounded-lg transition-all">
           <span class="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse"></span>
           <i data-lucide="activity" class="w-3.5 h-3.5"></i>
           <span>Live Canvas</span>
         </a>
         <a href="#arquitetura"
-          class="inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-bold px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-[#c9f17a] transition-all shadow-[0_0_20px_rgba(222,255,154,0.25)]">
+          class="hidden sm:inline-flex items-center space-x-2 bg-bio-lime text-space-950 font-bold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-[#c9f17a] transition-all shadow-[0_0_20px_rgba(222,255,154,0.25)]">
           <span>Ver Arquitetura</span>
           <i data-lucide="layers" class="w-3.5 h-3.5"></i>
         </a>
+
+        <!-- Botão Menu Mobile & iPad -->
+        <button id="mobileMenuBtn" type="button"
+          class="xl:hidden p-2 rounded-xl bg-space-850 border border-white/10 hover:border-bio-lime/50 text-gray-300 hover:text-white transition-all flex items-center justify-center"
+          aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <i data-lucide="menu" id="menuIconOpen" class="w-5 h-5"></i>
+          <i data-lucide="x" id="menuIconClose" class="w-5 h-5 hidden"></i>
+        </button>
       </div>
 
+    </div>
+
+    <!-- Gaveta / Menu Dropdown Mobile & iPad -->
+    <div id="mobileMenuDrawer" class="hidden xl:hidden bg-space-900/98 border-b border-white/10 backdrop-blur-xl px-5 sm:px-8 py-5 transition-all shadow-2xl">
+      <nav class="flex flex-col space-y-3.5 text-sm font-medium text-gray-200">
+        <a href="#solucao" class="mobile-nav-link hover:text-bio-lime transition-colors py-2 flex items-center justify-between border-b border-white/5">
+          <span>O Problema</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+        <a href="#ecossistema" class="mobile-nav-link hover:text-bio-lime transition-colors py-2 flex items-center justify-between border-b border-white/5">
+          <span>Ecossistema</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+        <a href="#jornada-campo" class="mobile-nav-link hover:text-bio-lime transition-colors py-2 flex items-center justify-between border-b border-white/5">
+          <span>Jornada no iPad</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+        <a href="#arquitetura" class="mobile-nav-link hover:text-bio-lime transition-colors py-2 flex items-center justify-between border-b border-white/5">
+          <span>Arquitetura C4</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+        <a href="#impacto" class="mobile-nav-link hover:text-bio-lime transition-colors py-2 flex items-center justify-between border-b border-white/5">
+          <span>ESG &amp; Negócios</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+        
+        <div class="pt-2 flex flex-col gap-2.5">
+          <a href="#fluxo-dados" class="mobile-nav-link w-full inline-flex items-center justify-center space-x-2 text-xs font-mono uppercase tracking-wider text-bio-lime bg-bio-lime/10 border border-bio-lime/30 py-3 rounded-xl hover:bg-bio-lime/20 transition-all">
+            <span class="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse"></span>
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            <span>Simulador Live Canvas</span>
+          </a>
+          <a href="#arquitetura" class="mobile-nav-link w-full inline-flex items-center justify-center space-x-2 bg-bio-lime text-space-950 font-bold py-3 rounded-xl text-xs font-mono uppercase tracking-wider hover:bg-[#c9f17a] transition-all">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>Ver Arquitetura Técnica</span>
+          </a>
+        </div>
+      </nav>
     </div>
   </header>
 
@@ -191,7 +237,7 @@
           </div>
 
           <!-- Métricas Resumo -->
-          <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0 text-left">
+          <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-3 sm:gap-6 max-w-lg mx-auto lg:mx-0 text-left">
             <div>
               <div class="text-2xl lg:text-3xl font-bold font-mono text-bio-lime">100%</div>
               <div class="text-xs text-gray-400">Cobertura Territorial por Satélite</div>
@@ -638,7 +684,7 @@
       </div>
 
       <!-- Grid dos 5 Passos -->
-      <div class="grid md:grid-cols-5 gap-4 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
 
         <!-- Passo 1: Dashboard -->
         <div
@@ -730,7 +776,7 @@
 
         <!-- Passo 5: Conduta Clínica -->
         <div
-          class="glass-card rounded-2xl p-5 border-white/10 hover:border-purple-400/40 transition-all flex flex-col justify-between group">
+          class="glass-card rounded-2xl p-5 border-white/10 hover:border-purple-400/40 transition-all flex flex-col justify-between group sm:col-span-2 lg:col-span-1">
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <span
@@ -775,8 +821,8 @@
       </div>
 
       <!-- Abas de Camada C4 -->
-      <div class="flex justify-center mb-10">
-        <div class="inline-flex p-1.5 rounded-xl bg-space-850 border border-white/10 text-xs font-mono">
+      <div class="flex justify-start sm:justify-center mb-10 overflow-x-auto px-4 py-1 max-w-full">
+        <div class="inline-flex p-1.5 rounded-xl bg-space-850 border border-white/10 text-xs font-mono whitespace-nowrap min-w-max">
           <button onclick="switchC4Tab('all')" id="tab-all"
             class="px-4 py-2 rounded-lg bg-bio-lime text-space-950 font-bold transition-all">
             Visão Geral Completa

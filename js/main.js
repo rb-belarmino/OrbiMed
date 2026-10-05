@@ -118,12 +118,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.clearRect(0, 0, w, h)
 
-    // Posições Calculadas dos Nós
-    const coords = nodes.map(n => ({
-      ...n,
-      px: n.x * w,
-      py: n.y * h
-    }))
+    // Posições Calculadas dos Nós Responsivas
+    const isMobile = w < 600
+    const isTablet = w >= 600 && w < 960
+    const cardW = isMobile ? Math.min(Math.max(w * 0.17, 52), 64) : (isTablet ? 98 : 126)
+    const cardH = isMobile ? 54 : (isTablet ? 64 : 74)
+    const margin = cardW / 2 + (isMobile ? 8 : 16)
+    const availableW = w - 2 * margin
+    const mobileX = [0, 0.25, 0.5, 0.75, 1.0]
+
+    const coords = nodes.map((n, idx) => {
+      const relX = isMobile ? mobileX[idx] : n.x
+      return {
+        ...n,
+        px: isMobile ? margin + relX * availableW : n.x * w,
+        py: n.y * h,
+        cardW,
+        cardH,
+        isMobile,
+        isTablet
+      }
+    })
 
     // Desenhar Conexões (Linhas de Sinal)
     ctx.lineWidth = 2
@@ -219,8 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function drawNodeCard(node) {
-    const cardW = 126
-    const cardH = 74
+    const cardW = node.cardW || 126
+    const cardH = node.cardH || 74
     const x = node.px - cardW / 2
     const y = node.py - cardH / 2
 
@@ -231,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineWidth = node.id === 3 && isLeoMode ? 2.5 : 1
 
     ctx.beginPath()
-    ctx.roundRect(x, y, cardW, cardH, 12)
+    ctx.roundRect(x, y, cardW, cardH, node.isMobile ? 8 : 12)
     ctx.fill()
     ctx.stroke()
 
@@ -241,18 +256,58 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.stroke()
     }
 
-    // Texto do Ícone e Título
-    ctx.font = '18px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText(node.icon, node.px, y + 25)
+    if (node.isMobile) {
+      ctx.font = '13px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText(node.icon, node.px, y + 18)
 
-    ctx.fillStyle = '#ffffff'
-    ctx.font = 'bold 12px sans-serif'
-    ctx.fillText(node.label, node.px, y + 45)
+      ctx.fillStyle = '#ffffff'
+      ctx.font = 'bold 8.5px sans-serif'
+      const shortLabels = {
+        'OrbiPen': 'OrbiPen',
+        'iPad Station': 'iPad',
+        'Starlink LEO': 'Starlink',
+        'FastAPI Cloud': 'Cloud',
+        'OrbiBrain AI': 'Brain AI'
+      }
+      ctx.fillText(shortLabels[node.label] || node.label, node.px, y + 33)
 
-    ctx.fillStyle = '#94a3b8'
-    ctx.font = '10px sans-serif'
-    ctx.fillText(node.sub, node.px, y + 61)
+      ctx.fillStyle = '#94a3b8'
+      ctx.font = '7.5px sans-serif'
+      const shortSubs = {
+        'ESP32 / BLE GATT': 'BLE 5.3',
+        'Swift 6 / Edge': 'Edge AI',
+        'Órbita 550km': 'LEO Sat',
+        'Python Backend': 'FastAPI',
+        'Score < 3min': '< 3min'
+      }
+      ctx.fillText(shortSubs[node.sub] || node.sub, node.px, y + 45)
+    } else if (node.isTablet) {
+      ctx.font = '16px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText(node.icon, node.px, y + 21)
+
+      ctx.fillStyle = '#ffffff'
+      ctx.font = 'bold 10.5px sans-serif'
+      ctx.fillText(node.label, node.px, y + 39)
+
+      ctx.fillStyle = '#94a3b8'
+      ctx.font = '9px sans-serif'
+      ctx.fillText(node.sub, node.px, y + 53)
+    } else {
+      // Desktop
+      ctx.font = '18px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText(node.icon, node.px, y + 25)
+
+      ctx.fillStyle = '#ffffff'
+      ctx.font = 'bold 12px sans-serif'
+      ctx.fillText(node.label, node.px, y + 45)
+
+      ctx.fillStyle = '#94a3b8'
+      ctx.font = '10px sans-serif'
+      ctx.fillText(node.sub, node.px, y + 61)
+    }
   }
 
   // Toggle do Failover Orbital
@@ -484,4 +539,38 @@ window.addEventListener('click', e => {
 
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal()
+})
+
+// ==========================================
+// 6. CONTROLE DO MENU RESPONSIVO (MOBILE / iPAD)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn')
+  const mobileMenuDrawer = document.getElementById('mobileMenuDrawer')
+  const menuIconOpen = document.getElementById('menuIconOpen')
+  const menuIconClose = document.getElementById('menuIconClose')
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link')
+
+  if (mobileMenuBtn && mobileMenuDrawer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true'
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded))
+      mobileMenuDrawer.classList.toggle('hidden')
+      if (menuIconOpen && menuIconClose) {
+        menuIconOpen.classList.toggle('hidden')
+        menuIconClose.classList.toggle('hidden')
+      }
+    })
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuDrawer.classList.add('hidden')
+        mobileMenuBtn.setAttribute('aria-expanded', 'false')
+        if (menuIconOpen && menuIconClose) {
+          menuIconOpen.classList.remove('hidden')
+          menuIconClose.classList.add('hidden')
+        }
+      })
+    })
+  }
 })
